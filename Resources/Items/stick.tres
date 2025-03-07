@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bivygoe7mkju7"]
+
+[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_a8snd"]
+[ext_resource type="Texture2D" uid="uid://bya0o5wuf46s4" path="res://Teksturki/misc_item_textures/stick_texture.png" id="2_jowil"]
+
+[resource]
+script = ExtResource("1_a8snd")
+name = "Stick"
+slot = "resource"
+description = "A wooden stick"
+level_req = 1
+damage = 0
+speed = 0
+health = 0
+armor = 0
+texture = ExtResource("2_jowil")
+stackable = true
+stack_size = 1
+max_stack = 50
+equipment_item = false

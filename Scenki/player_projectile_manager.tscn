@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceolihack76rl"]
+
+[ext_resource type="Script" path="res://Skrypty/player_projectile_manager.gd" id="1_e1rut"]
+[ext_resource type="PackedScene" uid="uid://1e44ihvfn576" path="res://Scenki/gracz_pocisk.tscn" id="2_q02qb"]
+
+[node name="player_projectile_manager" type="Node2D"]
+script = ExtResource("1_e1rut")
+player_projectile_scene = ExtResource("2_q02qb")

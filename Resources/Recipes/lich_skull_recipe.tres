@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="recipe_base" load_steps=4 format=3 uid="uid://cd0t8phpruwth"]
+
+[ext_resource type="Resource" uid="uid://u4ba4srchfm4" path="res://Resources/Items/lich_skull.tres" id="1_e0fcw"]
+[ext_resource type="Script" path="res://Skrypty/recipe_base.gd" id="2_atjkw"]
+[ext_resource type="Texture2D" uid="uid://bxena301i25eh" path="res://Teksturki/head_armor_textures/helm1.png" id="3_iquub"]
+
+[resource]
+script = ExtResource("2_atjkw")
+name = "Skull of the fallen lich"
+crafting_materials = {
+"Rope": 15
+}
+crafting_product = ExtResource("1_e0fcw")
+lvl_req = 2
+texture = ExtResource("3_iquub")

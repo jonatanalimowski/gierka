@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgb507aggdqbj"]
+
+[ext_resource type="Script" path="res://Skrypty/crafting_station.gd" id="1_e5h7v"]
+[ext_resource type="Texture2D" uid="uid://bidp4xp42xvwc" path="res://Teksturki/structure_textures/crafting_station1_texture.png" id="2_bg5qu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_432x7"]
+radius = 35.0571
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvw7u"]
+radius = 21.095
+
+[node name="crafting_station" type="Node2D"]
+script = ExtResource("1_e5h7v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bg5qu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_432x7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_uvw7u")
+debug_color = Color(0.932701, 0.243896, 0.272571, 0.419608)

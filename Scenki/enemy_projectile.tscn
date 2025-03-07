@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqn35ho8li6vs"]
+
+[ext_resource type="Script" path="res://Skrypty/enemy_projectile.gd" id="1_1x5p0"]
+[ext_resource type="Texture2D" uid="uid://b4ysqbi32rie7" path="res://Teksturki/proj_enemy.png" id="2_x43ko"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xlqcl"]
+radius = 7.07107
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 64
+collision_mask = 39
+script = ExtResource("1_1x5p0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_x43ko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_xlqcl")
+debug_color = Color(0.855128, 0.150982, 0.414172, 0.42)

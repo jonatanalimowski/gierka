@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://odsludeqpn5o"]
+
+[ext_resource type="Script" path="res://Skrypty/enemy_spawner.gd" id="1_4gqya"]
+[ext_resource type="PackedScene" uid="uid://7n43qqprliea" path="res://Scenki/slime.tscn" id="2_sl0f6"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_4gqya")
+enemy_slime = ExtResource("2_sl0f6")

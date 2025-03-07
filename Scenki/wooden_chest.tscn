@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://kbkpxdtdd8of"]
+
+[ext_resource type="Script" path="res://Skrypty/wooden_chest.gd" id="1_7dm3b"]
+[ext_resource type="Texture2D" uid="uid://dd34pn4yvnn81" path="res://Teksturki/structure_textures/chest_texture.png" id="2_6cqi7"]
+[ext_resource type="Script" path="res://Skrypty/item_container.gd" id="3_oaqfy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8p7o"]
+radius = 40.0125
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xuej"]
+radius = 21.0238
+
+[node name="wooden_chest" type="Node2D"]
+script = ExtResource("1_7dm3b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("2_6cqi7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_b8p7o")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_5xuej")
+debug_color = Color(0.921468, 0.23476, 0.392542, 0.42)
+
+[node name="Item_Container" type="Node" parent="."]
+script = ExtResource("3_oaqfy")
+inv_size = 36

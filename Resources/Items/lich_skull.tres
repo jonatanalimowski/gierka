@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://u4ba4srchfm4"]
+
+[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_xwf88"]
+[ext_resource type="Texture2D" uid="uid://bxena301i25eh" path="res://Teksturki/head_armor_textures/helm1.png" id="2_q5ij5"]
+
+[resource]
+script = ExtResource("1_xwf88")
+name = "Skull of the fallen lich"
+slot = "head_armor"
+description = "bazoinga"
+level_req = 2
+damage = 50
+speed = 50
+health = 0
+armor = 25
+texture = ExtResource("2_q5ij5")
+stackable = false
+stack_size = 1
+max_stack = 50
+equipment_item = true

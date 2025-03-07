@@ -1,0 +1,593 @@
+[gd_scene load_steps=13 format=3 uid="uid://di3y2pbyp6kdq"]
+
+[ext_resource type="Script" path="res://Skrypty/ui.gd" id="1_ymvek"]
+[ext_resource type="Script" path="res://Skrypty/inv_item_drop_zone.gd" id="2_u6v0h"]
+[ext_resource type="Texture2D" uid="uid://dtjwu8m5t5v8u" path="res://Teksturki/UI_textures/progress_bar_under.png" id="3_8kcxk"]
+[ext_resource type="Script" path="res://Skrypty/building_ui.gd" id="3_am4dl"]
+[ext_resource type="Texture2D" uid="uid://q5fbthqlq3xw" path="res://Teksturki/UI_textures/progress_bar_hp.png" id="4_0k5ql"]
+[ext_resource type="Script" path="res://Skrypty/drop_query.gd" id="4_8kwhb"]
+[ext_resource type="Script" path="res://Skrypty/crafting_ui.gd" id="4_poa2l"]
+[ext_resource type="Texture2D" uid="uid://110od3aq7gcu" path="res://Teksturki/UI_textures/progress_bar_xp.png" id="4_uhrxg"]
+[ext_resource type="Script" path="res://Skrypty/chest_ui.gd" id="5_w746n"]
+[ext_resource type="LabelSettings" uid="uid://cssdg5n362yye" path="res://ui_default_text_settings.tres" id="5_y0vgu"]
+[ext_resource type="Script" path="res://Skrypty/tool_bar.gd" id="11_rnhuu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_he40f"]
+font_size = 32
+font_color = Color(0.646029, 0.646029, 0.646029, 1)
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 3
+script = ExtResource("1_ymvek")
+
+[node name="StatisticsUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="StatisticsUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = -102.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="StatisticsUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatisticsUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelDMG" type="Label" parent="StatisticsUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player damage: "
+label_settings = ExtResource("5_y0vgu")
+
+[node name="LabelSPD" type="Label" parent="StatisticsUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player speed: "
+label_settings = ExtResource("5_y0vgu")
+
+[node name="LabelARMR" type="Label" parent="StatisticsUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player armor: "
+label_settings = ExtResource("5_y0vgu")
+
+[node name="BaseUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BuildingUI" type="Control" parent="BaseUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_am4dl")
+
+[node name="BuildingRecipeSelector" type="PanelContainer" parent="BaseUI/BuildingUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.4
+anchor_right = 0.5
+anchor_bottom = 0.4
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BaseUI/BuildingUI/BuildingRecipeSelector"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="BaseUI/BuildingUI/BuildingRecipeSelector/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="CraftingUI" type="Control" parent="BaseUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_poa2l")
+
+[node name="CraftingRecipeSelector" type="PanelContainer" parent="BaseUI/CraftingUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.35
+anchor_right = 0.5
+anchor_bottom = 0.35
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BaseUI/CraftingUI/CraftingRecipeSelector"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="BaseUI/CraftingUI/CraftingRecipeSelector/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="ChestUI" type="Control" parent="BaseUI"]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_w746n")
+
+[node name="PanelContainer" type="PanelContainer" parent="BaseUI/ChestUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.1
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BaseUI/ChestUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="BaseUI/ChestUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PauseUI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.168627)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -15.5
+offset_right = 35.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button_Resume" type="Button" parent="PauseUI/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="LevelUpUI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="LevelUpUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.109804)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUpUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.259
+anchor_right = 0.5
+anchor_bottom = 0.259
+offset_left = -159.0
+offset_top = -17.5
+offset_right = 159.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionHP" type="VBoxContainer" parent="LevelUpUI/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUpUI/HBoxContainer/OptionHP"]
+layout_mode = 2
+text = "Upgrade Health"
+
+[node name="ButtonHP" type="Button" parent="LevelUpUI/HBoxContainer/OptionHP"]
+layout_mode = 2
+text = "+50 MAX HP"
+
+[node name="OptionDMG" type="VBoxContainer" parent="LevelUpUI/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUpUI/HBoxContainer/OptionDMG"]
+layout_mode = 2
+text = "Upgrade Damage"
+
+[node name="ButtonDMG" type="Button" parent="LevelUpUI/HBoxContainer/OptionDMG"]
+layout_mode = 2
+text = "+25 DMG"
+
+[node name="OptionSPD" type="VBoxContainer" parent="LevelUpUI/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUpUI/HBoxContainer/OptionSPD"]
+layout_mode = 2
+text = "Upgrade Speed"
+
+[node name="ButtonSPD" type="Button" parent="LevelUpUI/HBoxContainer/OptionSPD"]
+layout_mode = 2
+text = "+50 SPD"
+
+[node name="OptionARM" type="VBoxContainer" parent="LevelUpUI/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LevelUpUI/HBoxContainer/OptionARM"]
+layout_mode = 2
+text = "Upgrade Armor"
+
+[node name="ButtonARM" type="Button" parent="LevelUpUI/HBoxContainer/OptionARM"]
+layout_mode = 2
+text = "+5 ARM"
+
+[node name="InventoryUI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="InventoryUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = -63.0
+offset_right = 266.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="label1" type="Label" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "inventory"
+
+[node name="Spacer" type="Control" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="label2" type="Label" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "equipment"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="inv_grid" type="GridContainer" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 8
+
+[node name="Spacer" type="Control" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 9.0
+
+[node name="eq_grid" type="GridContainer" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="Drop_zone" type="Control" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 1
+script = ExtResource("2_u6v0h")
+
+[node name="Label" type="Label" parent="InventoryUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Drop_zone"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -12.5
+offset_right = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "D
+R
+O
+P"
+label_settings = SubResource("LabelSettings_he40f")
+
+[node name="DropQuery" type="Control" parent="InventoryUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("4_8kwhb")
+
+[node name="PanelContainer" type="PanelContainer" parent="InventoryUI/DropQuery"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.17
+anchor_right = 0.5
+anchor_bottom = 0.17
+offset_left = -130.5
+offset_right = 130.5
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryUI/DropQuery/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "How much do you want to drop?"
+
+[node name="HSlider" type="HSlider" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OK" type="Button" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "DROP
+"
+
+[node name="Spacer" type="Control" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "120"
+
+[node name="Spacer2" type="Control" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CANCEL" type="Button" parent="InventoryUI/DropQuery/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "CANCEL
+"
+
+[node name="MainUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopUI" type="Control" parent="MainUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MainUI/TopUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.0
+offset_right = 127.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainUI/TopUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/TopUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="LvlText" type="Label" parent="MainUI/TopUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "Player Level: 1"
+label_settings = ExtResource("5_y0vgu")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MainUI/TopUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("3_8kcxk")
+texture_progress = ExtResource("4_uhrxg")
+
+[node name="XpText" type="Label" parent="MainUI/TopUI/PanelContainer/MarginContainer/VBoxContainer/TextureProgressBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.575
+anchor_right = 0.5
+anchor_bottom = 0.575
+offset_left = -53.5
+offset_top = -17.0
+offset_right = 53.5
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "XP: 13/20"
+label_settings = ExtResource("5_y0vgu")
+
+[node name="HealthBar" type="TextureProgressBar" parent="MainUI/TopUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("3_8kcxk")
+texture_progress = ExtResource("4_0k5ql")
+
+[node name="HealthText" type="Label" parent="MainUI/TopUI/PanelContainer/MarginContainer/VBoxContainer/HealthBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.575
+anchor_right = 0.5
+anchor_bottom = 0.575
+offset_left = -46.0
+offset_top = -17.0
+offset_right = 46.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "HP: 120/320"
+label_settings = ExtResource("5_y0vgu")
+
+[node name="ToolBar" type="Control" parent="MainUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_rnhuu")
+
+[node name="PanelContainer" type="PanelContainer" parent="MainUI/ToolBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MainUI/ToolBar/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/ToolBar/PanelContainer/MarginContainer"]
+layout_mode = 2

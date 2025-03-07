@@ -1,0 +1,26 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2udn1xhvmtt0"]
+
+[ext_resource type="Script" path="res://Skrypty/overworld.gd" id="1_a252c"]
+[ext_resource type="PackedScene" uid="uid://cjirbtarelhv3" path="res://Scenki/gracz.tscn" id="2_uo4yy"]
+[ext_resource type="PackedScene" uid="uid://odsludeqpn5o" path="res://Scenki/enemy_spawner.tscn" id="3_l5vtc"]
+[ext_resource type="PackedScene" uid="uid://dicfikc5ouv2u" path="res://Scenki/enemy_projectile_manager.tscn" id="4_q0sjn"]
+[ext_resource type="PackedScene" uid="uid://ceolihack76rl" path="res://Scenki/player_projectile_manager.tscn" id="5_osxyk"]
+[ext_resource type="PackedScene" uid="uid://dorbe84xjypgu" path="res://Resources/Recipes/build_mode.tscn" id="6_86pk5"]
+[ext_resource type="TileSet" uid="uid://cm4kahoo7ralf" path="res://Scenki/tilemap.tres" id="7_3itdg"]
+
+[node name="overworld_node" type="Node2D"]
+script = ExtResource("1_a252c")
+
+[node name="player" parent="." instance=ExtResource("2_uo4yy")]
+position = Vector2(0, 0)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_l5vtc")]
+
+[node name="NodeEnemyProjectileManager" parent="." instance=ExtResource("4_q0sjn")]
+
+[node name="player_projectile_manager" parent="." instance=ExtResource("5_osxyk")]
+
+[node name="build_mode" parent="." instance=ExtResource("6_86pk5")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("7_3itdg")

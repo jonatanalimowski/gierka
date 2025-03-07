@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://danynctmq3hjx"]
+
+[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_v600f"]
+[ext_resource type="Texture2D" uid="uid://bc1w1670hce4j" path="res://Teksturki/head_armor_textures/helmet1.png" id="2_8kues"]
+
+[resource]
+script = ExtResource("1_v600f")
+name = "Froggie Helm"
+slot = "head_armor"
+description = "Czaaapeczka"
+level_req = 2
+damage = 10
+speed = 25
+health = 50
+armor = 5
+texture = ExtResource("2_8kues")

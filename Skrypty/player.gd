@@ -1,0 +1,102 @@
+extends CharacterBody2D
+
+@onready var tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)
+@onready var proj_manager = get_tree().get_root().find_child("player_projectile_manager", true, false)
+
+@export var max_health := 100
+@export var health := 100
+@export var speed := 200
+@export var damage: int = 50
+@export var armor: int = 5
+@export var obszar_przeszukiwan := 3
+var is_invincible: bool = false
+var invincibility_seconds: float = 0.5
+
+
+func _ready() -> void:
+	global.player_stat_update.connect(update_stats) 
+	update_stats()
+	add_to_group("player")
+	if not tilemap:
+		print("TileMapLayer nie znaleziony przez gracza")
+	if not proj_manager:
+		print("gracz nie widzi proj_managera")
+
+
+func _physics_process(delta: float) -> void:
+	var direction = Input.get_vector("left", "right", "up", "down")
+	velocity = direction * speed
+	move_and_slide()
+	
+	chunk_loader.check_if_player_crossed_chunks(global_position)
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("interact"):
+		var building_node = $InteractionArea.closest_building_node
+		if building_node:
+			if building_node.has_method("open_ui"):
+				building_node.open_ui()
+	
+	if event.is_action_pressed("shoot"):
+		if not is_instance_valid(proj_manager):
+			proj_manager = get_tree().get_root().find_child("player_projectile_manager", true, false)
+		else:
+			proj_manager._on_shoot(damage)
+	
+	if event.is_action_pressed("wheel_up"):
+		if $Camera2D.zoom <= Vector2(1.5, 1.5):
+			$Camera2D.zoom *= 1.15
+	
+	if event.is_action_pressed("wheel_down"):
+		if $Camera2D.zoom >= Vector2(0.2, 0.2):#Vector2(0.875, 0.875):
+			$Camera2D.zoom /= 1.15
+
+func check_tiles_for_interaction():
+	var interactive_tiles = [] #zwracane kafelki
+	if not is_instance_valid(tilemap):
+		tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)
+	var przekatna_obszaru = obszar_przeszukiwan - 2
+	var poz_kafelkowa_rog = tilemap.local_to_map(global_position)-Vector2i(przekatna_obszaru,przekatna_obszaru)
+	
+	for i in range(obszar_przeszukiwan): #DODAC SPRAWDZANIE CZY GRACZ NIE JEST POZA MAPA
+		for j in range(obszar_przeszukiwan):
+			var tile_rodzaj = poz_kafelkowa_rog+Vector2i(i,j)
+			var tile_data = tilemap.get_cell_tile_data(tile_rodzaj)
+			if tile_data.get_custom_data("interaction"):
+				interactive_tiles.append(tile_data.get_custom_data("interaction"))
+	
+	if interactive_tiles != []:
+		return interactive_tiles[0]
+
+
+func take_damage(damage):
+	if not is_invincible:
+		var dmg_mitigation = float(armor)/float(100+armor)
+		var effective_dmg = damage*(1-dmg_mitigation) #1-dmg_mitigation to ile% redukuje 200 armor to 2/3 sa redukowane, czli 1/3 effective obrazenia
+		global.change_sprite_color(self)
+		global.player_current_health -= effective_dmg
+		global.emit_signal("player_health_changed")
+		if global.player_current_health <= 0:
+			die()
+		else: #inv-frames
+			is_invincible = true
+			await get_tree().create_timer(invincibility_seconds).timeout
+			is_invincible = false
+
+
+func die():
+	world_state.clear_instanced_objects()
+	global.player_current_health = global.player_max_health
+	global_position = global.player_spawn
+	global.player_money = 0
+	global.emit_signal("player_stat_update")
+
+
+func update_stats():
+	max_health = global.player_max_health
+	health = global.player_current_health
+	damage = global.player_damage
+	speed = global.player_speed
+	armor = global.player_armor
+	global.emit_signal("player_health_changed")

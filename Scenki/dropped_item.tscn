@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0kyhsrvb1wlj"]
+
+[ext_resource type="Script" path="res://Skrypty/dropped_item.gd" id="1_th46t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kaocy"]
+radius = 17.0
+
+[node name="dropped_item" type="Area2D"]
+collision_layer = 128
+collision_mask = 32
+script = ExtResource("1_th46t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_kaocy")
+debug_color = Color(0.687422, 0.317824, 0.958007, 0.42)
