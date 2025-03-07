@@ -57,12 +57,14 @@ func roll_for_drops():
 			if drop_data:
 				var roll = randi_range(1, drop_data["odds"])
 				if roll == 1:
-					drop_item(drop_data["item"], pos)
+					var amount = randi_range(1, drop_data["max_amount"])
+					drop_item(drop_data["item"], pos, amount)
 
 
-func drop_item(item, pos):
+func drop_item(item, pos, amount):
 	var new_drop = preload("res://Scenki/dropped_item.tscn").instantiate()
 	new_drop.global_position = pos
+	item.stack_size = amount
 	new_drop.dropped_by_entity(item, pos, null)
 	var current_scene = get_tree().get_root().find_child("CurrentScene", true, false)
 	current_scene.add_child(new_drop)

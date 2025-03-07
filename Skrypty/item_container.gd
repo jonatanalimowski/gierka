@@ -12,7 +12,6 @@ func _ready():
 
 func add_item(item: Item) -> bool:
 	var inv_index = null
-	print(item.stack_size, " POCZ")
 	if item.stackable:
 		inv_index = look_for_item(item)
 		
@@ -25,8 +24,6 @@ func add_item(item: Item) -> bool:
 		return false  #<-false jesli brak miejsca w eq
 	
 	else: #jesli jest w inventory taki itemek i jest miejsce w staku to zwieksza ilosc stacku
-		print(item.stack_size)
-		print(inv_array[inv_index].stack_size)
 		inv_array[inv_index].stack_size += item.stack_size
 		global.emit_signal("inventory_updated", self)
 		return true

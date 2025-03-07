@@ -4,6 +4,7 @@ extends Entity
 @onready var currentscene = get_tree().get_root().find_child("CurrentScene", true, false)
 var drop1 = {
 	"item": preload("res://Resources/Items/stick.tres"),
+	"max_amount": 3,
 	"odds": 3 #what are the odds of dropping; here one in three
 }
 

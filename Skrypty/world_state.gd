@@ -24,8 +24,8 @@ var state = {
 }
 
 func save_world_state():
-	print("SAVE MAP", current_map)
-	print(current_map) 
+	#print("SAVE MAP", current_map)
+	#print(current_map) 
 	dropped_items = []
 	buildings = []
 	enemies = []
@@ -82,8 +82,8 @@ func save_world_state():
 
 #wczytanie stanu świata instancjonowanie obiektu na podstawie zapisanych danych
 func load_world_state():
-	print("LOAD_MAP", current_map) 
-	print(current_map) 
+	#print("LOAD_MAP", current_map) 
+	#print(current_map) 
 	if current_scene == null:
 		print("loading error, no currentscene")
 		return

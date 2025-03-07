@@ -11,18 +11,13 @@ var rng = RandomNumberGenerator.new()
 
 
 func _ready() -> void:
-	if player:
-		print("Enemy spawner widzi gracza")
-	else:
+	if not player:
 		print("!!Enemy spawner nie widzi gracza")
-		
-	if tilemap:
-		print("TileMapLayer znaleziony przez enemy spawner")
-	else:
+	
+	if not tilemap:
 		print("!!TileMapLayer nie znaleziony przez enemy spawner")
-	if currentscene:
-		print("Enemy spawner widzi currentscene")
-	else:
+	
+	if not currentscene:
 		print("!!Enemy spawner nie widzi currentscene")
 	
 	#spawn timer
