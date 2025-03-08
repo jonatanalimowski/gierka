@@ -55,4 +55,4 @@ func _on_area_exited(area):
 				buildings_in_area_data.erase(building_data)
 				break
 		update_closest()
-		global.emit_signal("close_crafting_ui")
+		global.emit_signal("close_building_ui")

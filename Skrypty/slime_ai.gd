@@ -1,7 +1,7 @@
 extends EntityBehavior
 class_name SlimeAI
 
-@export var jump_force: float = 80.0
+@export var jump_force: float = 120.0
 @export var jump_interval: float = 2.0
 var time_since_last_jump: float = 0
 

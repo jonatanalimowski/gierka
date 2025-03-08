@@ -30,7 +30,7 @@ func add_item(item: Item) -> bool:
 
 
 func remove_item(inv_index, amount = null):
-	if not amount:
+	if amount == null:
 		if inv_array[inv_index] != null:
 			inv_array[inv_index] = null
 			global.emit_signal("inventory_updated", self)

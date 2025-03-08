@@ -14,7 +14,6 @@ func _ready() -> void:
 func fill_and_update_chest_ui(item_container):
 	if item_container.container_name == "chest_container":
 		if is_chest_ui:
-			print("updating chest ui")
 			var slot_scene = preload("res://Scenki/inventory_slot.tscn")
 			chest_ui_grid.columns = 6
 			for child in chest_ui_grid.get_children():

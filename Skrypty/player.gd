@@ -52,7 +52,8 @@ func _unhandled_input(event):
 		if $Camera2D.zoom >= Vector2(0.2, 0.2):#Vector2(0.875, 0.875):
 			$Camera2D.zoom /= 1.15
 
-func check_tiles_for_interaction():
+
+func check_tiles_for_interaction(): #rly old method
 	var interactive_tiles = [] #zwracane kafelki
 	if not is_instance_valid(tilemap):
 		tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)

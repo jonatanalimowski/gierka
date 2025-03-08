@@ -7,18 +7,27 @@ var drop1 = {
 	"max_amount": 3,
 	"odds": 3 #what are the odds of dropping; here one in three
 }
-
+var drop2 = {
+	"item": preload("res://Resources/Items/rope.tres"),
+	"max_amount": 3,
+	"odds": 3
+}
 var stat_multiplier
 
 func _ready() -> void:
+	#entity stats
 	is_passive = false
-	stat_multiplier = 1.25 ** (global.player_level-1)
-	health = 100 * stat_multiplier
+	stat_multiplier = 0.20 * (global.player_level-1)
+	health = 100 + (100*stat_multiplier)
 	max_health = health
-	damage = 20 * stat_multiplier
+	damage = 20 + (20*stat_multiplier)
 	xp_drop = 5
 	
+	#item drops
 	drops.append(drop1)
+	drops.append(drop2)
+	
+	#misc
 	set_collisions()
 	update_healthbar()
 	entity_damaged.connect(update_healthbar) 

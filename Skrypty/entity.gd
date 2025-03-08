@@ -44,7 +44,6 @@ func take_damage(damage):
 
 func die():
 	global.add_xp(xp_drop)
-	#drop
 	roll_for_drops()
 	queue_free()
 

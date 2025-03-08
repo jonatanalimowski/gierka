@@ -18,9 +18,9 @@ func generate_map_array_from_seed(seed):
 	
 	random = RandomNumberGenerator.new()
 	random.seed = seed
-	var automata_steps = 50
-	var smoothing_steps = 15
-	var both_steps = 5
+	var automata_steps = 5
+	var smoothing_steps = 5
+	var both_steps = 1
 	total_steps = automata_steps + both_steps*2 + smoothing_steps #PROGRESS_INFO
 	
 	#1: creates an array with dimenions extended in every way by one then fills with ones (walls)
@@ -37,17 +37,17 @@ func generate_map_array_from_seed(seed):
 	
 	
 	#3: apply cellular automata
-	for i in range(automata_steps):
-		await apply_cellular_automata(1)
+	#for i in range(automata_steps):
+	#	await apply_cellular_automata(1)
 
 	#4: apply smoothing
-	for i in range(smoothing_steps):
-		await apply_smoothing(1)
+	#for i in range(smoothing_steps):
+	#	await apply_smoothing(1)
 	
 	#5: apply both
-	for i in range(both_steps):
-		await apply_cellular_automata(1)
-		await apply_smoothing(1)
+	#for i in range(both_steps):
+	#	await apply_cellular_automata(1)
+	#	await apply_smoothing(1)
 	
 	emit_signal("generation_finished")
 
@@ -73,9 +73,6 @@ func apply_cellular_automata(automata_iterations):
 				
 				elif neighbors["ones"] <= 2:
 					new_world_data[x][y] = 0
-				
-				else:
-					new_world_data[x][y] = random.randi_range(0,1)
 		
 		steps_done += 1 #PROGRESS_INFO
 		await get_tree().process_frame #PROGRESS_INFO
@@ -91,11 +88,11 @@ func apply_smoothing(smoothing_iterations):
 			for y in range(1, world_size.y+1):
 				var neighbors = count_neighbors_in_array(x, y)
 				
-				if neighbors["ones"] < 5:
-					new_world_data[x][y] = 0
-				
-				elif neighbors["zeroes"] < 5:
+				if neighbors["ones"] > 4:
 					new_world_data[x][y] = 1
+				
+				elif neighbors["zeroes"] >= 4:
+					new_world_data[x][y] = 0
 		
 		steps_done += 1 #PROGRESS_INFO
 		await get_tree().process_frame #PROGRESS_INFO

@@ -61,7 +61,7 @@ func on_recipe_chosen(building_recipe):
 
 
 func build(building_recipe):
-	while not build_mode:
+	while not build_mode: #potential infinite loop (worth finding a better solution for those)
 		build_mode = get_tree().get_root().find_child("build_mode", true, false)
-		
+	
 	build_mode.start_building_mode(building_recipe)

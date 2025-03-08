@@ -8,14 +8,13 @@ signal craft_item(recipe)
 func _ready() -> void:
 	add_to_group("crafting_ui")
 	global.connect("toggle_crafting_ui", toggle_ui)
-	global.connect("close_crafting_ui", close_ui)
+	global.connect("close_building_ui", close_ui)
 
 
 func toggle_and_update_building_list(recipes):
 	for child in ui_grid.get_children():
 		child.queue_free()
 	
-	print(recipes)
 	for recipe_data in recipes:
 		var recipe = recipes[recipe_data]
 		var hbox = HBoxContainer.new()

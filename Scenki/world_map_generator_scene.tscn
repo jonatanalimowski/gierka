@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bu0qx35i5sp"]
 
-[ext_resource type="Script" path="res://world_map_generator.gd" id="1_hxou2"]
+[ext_resource type="Script" path="res://Skrypty/world_map_generator.gd" id="1_hxou2"]
 [ext_resource type="TileSet" uid="uid://cm4kahoo7ralf" path="res://Scenki/tilemap.tres" id="2_e1l7o"]
 [ext_resource type="Script" path="res://Skrypty/world_generator.gd" id="3_vqb04"]
 

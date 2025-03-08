@@ -51,7 +51,7 @@ func spawn_entity(): #should be entity in function parameters
 				entity.global_position = tilemap.map_to_local(spawn_position)
 				currentscene.add_child(entity)
 				#print("spawned at", tilemap.map_to_local(spawn_position))
-				global.enemy_entities_on_screen += 1 #TEMP???
+				#global.enemy_entities_on_screen += 1 #???
 				
 			else:
 				tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)
@@ -62,18 +62,16 @@ func spawn_entity(): #should be entity in function parameters
 func cull_enemies():
 	if player:
 		for entity in get_tree().get_nodes_in_group("enemy"):
-			if entity.global_position.distance_to(player.global_position) >= 3500: #cull distance
+			if entity.global_position.distance_to(player.global_position) >= 2500: #cull distance
 				entity.queue_free()
 
 
 func get_spawn_position():
 	if is_instance_valid(player):
 		if is_instance_valid(tilemap):
-			var viewport = get_viewport_rect()
-			var screen_size = viewport.size
 			var player_position = player.global_position
-			var direction = Vector2.RIGHT.rotated(randf() * TAU)  #random direction
-			var spawn_distance = screen_size.length() * randf_range(1, 1.2)  #makes it offscreen
+			var direction = Vector2.RIGHT.rotated(randf() * TAU)  #random direction; TAU is circle constant in radians
+			var spawn_distance = Vector2(1, 1) * randf_range(1000, 1500)  #dist
 			return tilemap.local_to_map(player_position + direction * spawn_distance) #centers it on the closest valid tile
 			
 		else:

@@ -10,7 +10,6 @@ func toggle_collisions():
 
 
 func _ready() -> void:
-	print($StaticBody2D/CollisionShape2D.disabled)
 	$Area2D.add_to_group("building_interaction")
 	add_to_group("building")
 	global.connect("craft_item", craft_item)
@@ -28,6 +27,7 @@ func craft_item(recipe):
 				player_inventory.remove_amount_from_inv(material, recipe.crafting_materials[material])
 		else:
 			print("brak miejsca w inv")
+
 
 func check_if_craftable(recipe):
 	var craftable = true
