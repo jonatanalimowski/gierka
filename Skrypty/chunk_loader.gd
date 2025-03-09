@@ -6,9 +6,7 @@ var loaded_chunks = []
 var world_size: Vector2i
 var tilemap: TileMapLayer
 var last_chunk_visited = Vector2i(-100,-100)
-
-func _ready() -> void: #sets chunk size
-	pass
+var generator = WorldGenerator.new()
 
 
 func initialise_chunk_data(world_dims): #when the world has been created
