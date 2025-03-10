@@ -23,7 +23,7 @@ signal toolbar_chosen_item_changed(item)
 var player_current_health: int = 100
 var player_max_health: int = 100
 var player_damage: int = 50
-var player_speed = 500 #!
+var player_speed = 300
 var player_level: int = 1
 var player_armor = 5
 var player_money: int = 0

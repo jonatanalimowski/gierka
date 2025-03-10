@@ -2,13 +2,17 @@ extends CharacterBody2D
 
 @onready var tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)
 @onready var proj_manager = get_tree().get_root().find_child("player_projectile_manager", true, false)
+@onready var dash_timer = $DashTimer
 
+@onready var dash_speed = walk_speed*3
+@onready var character_speed = walk_speed
 @export var max_health := 100
 @export var health := 100
-@export var speed := 200
+@export var walk_speed := 200
 @export var damage: int = 50
 @export var armor: int = 5
 @export var obszar_przeszukiwan := 3
+
 var is_invincible: bool = false
 var invincibility_seconds: float = 0.5
 var default_on_click_behavior = ItemBehaviorMelee.new()
@@ -16,6 +20,7 @@ var current_on_click_behavior: ItemBehavior = null
 
 
 func _ready() -> void:
+	dash_timer.timeout.connect(dash_finished)
 	global.player_stat_update.connect(update_stats) 
 	global.toolbar_chosen_item_changed.connect(item_in_hand_changed)
 	current_on_click_behavior = default_on_click_behavior
@@ -29,7 +34,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
-	velocity = direction * speed
+	velocity = direction * character_speed
 	move_and_slide()
 	
 	chunk_loader.check_if_player_crossed_chunks(global_position)
@@ -49,6 +54,11 @@ func _unhandled_input(event):
 		#else:
 		#	proj_manager._on_shoot(damage)
 	
+	if event.is_action_pressed("dash"):
+		character_speed = dash_speed
+		is_invincible = true
+		dash_timer.start()
+	
 	if event.is_action_pressed("wheel_up"):
 		if $Camera2D.zoom <= Vector2(1.5, 1.5):
 			$Camera2D.zoom *= 1.15
@@ -56,6 +66,11 @@ func _unhandled_input(event):
 	if event.is_action_pressed("wheel_down"):
 		if $Camera2D.zoom >= Vector2(0.2, 0.2):#Vector2(0.875, 0.875):
 			$Camera2D.zoom /= 1.15
+
+
+func dash_finished():
+	is_invincible = false
+	character_speed = walk_speed
 
 
 func item_in_hand_changed(item):
@@ -111,6 +126,7 @@ func update_stats():
 	max_health = global.player_max_health
 	health = global.player_current_health
 	damage = global.player_damage
-	speed = global.player_speed
+	walk_speed = global.player_speed
+	character_speed = walk_speed
 	armor = global.player_armor
 	global.emit_signal("player_health_changed")

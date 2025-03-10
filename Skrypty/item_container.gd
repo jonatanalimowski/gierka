@@ -97,8 +97,14 @@ func remove_amount_from_inv(item_name, amount):
 
 
 func swap_items_between_containers(cont1, cont2, cont1_index, cont2_index):
-	var temp = cont1.inv_array[cont1_index]
-	cont1.inv_array[cont1_index] = cont2.inv_array[cont2_index]
-	cont2.inv_array[cont2_index] = temp
+	if cont1.inv_array[cont1_index] != null and cont2.inv_array[cont2_index] != null:
+		if cont1.inv_array[cont1_index].name == cont2.inv_array[cont2_index].name:
+			cont2.add_item(cont1.inv_array[cont1_index])
+			cont1.inv_array[cont1_index] = null
+	else:
+		var temp = cont1.inv_array[cont1_index]
+		cont1.inv_array[cont1_index] = cont2.inv_array[cont2_index]
+		cont2.inv_array[cont2_index] = temp
+	
 	global.emit_signal("inventory_updated", cont1)
 	global.emit_signal("inventory_updated", cont2)
