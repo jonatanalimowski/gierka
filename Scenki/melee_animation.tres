@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://c5wyoglaw0dct"]
+
+[ext_resource type="Texture2D" uid="uid://c8kp0neqf0sdu" path="res://Teksturki/Animations/empty_frame.png" id="1_1fiht"]
+[ext_resource type="Texture2D" uid="uid://bnke663r2tkll" path="res://Teksturki/Animations/melee_attack_frame1.png" id="2_j1i1e"]
+[ext_resource type="Texture2D" uid="uid://bnbvm072xkgi8" path="res://Teksturki/Animations/melee_attack_frame2.png" id="3_w1wt4"]
+[ext_resource type="Texture2D" uid="uid://b05rhkr18p8jf" path="res://Teksturki/Animations/melee_attack_frame3.png" id="4_qkcnn"]
+[ext_resource type="Texture2D" uid="uid://cepl5fmqmgor2" path="res://Teksturki/Animations/melee_attack_frame4.png" id="5_ssaq3"]
+[ext_resource type="Texture2D" uid="uid://60i7v3hp2q71" path="res://Teksturki/Animations/melee_attack_frame5.png" id="6_u1dxq"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1fiht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j1i1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w1wt4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qkcnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ssaq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u1dxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1fiht")
+}],
+"loop": false,
+"name": &"new_animation",
+"speed": 30.0
+}]
