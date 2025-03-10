@@ -2,7 +2,7 @@ extends Node2D
 @onready var generator = $Node
 var offset = Vector2(0, 0)
 var player_pos: Vector2
-var world_dims = Vector2i(512, 512)
+var world_dims = Vector2i(256, 256)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
@@ -14,14 +14,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("wheel_down"):
 		$Camera2D.zoom /= 1.15
 		
-	if event.is_action_pressed("up"):
-		generator.apply_cellular_automata(1)
-		generator.create_map_from_array($TileMapLayer)
+	#if event.is_action_pressed("up"):
 	
-	if event.is_action_pressed("down"):
-		generator.apply_smoothing(1)
-		generator.create_map_from_array($TileMapLayer)
-
+	#if event.is_action_pressed("down"):
+	
 	if event.is_action_pressed("right_mouse"):
 		player_pos = get_global_mouse_position()
 		global.emit_signal("player_pos_set", player_pos)

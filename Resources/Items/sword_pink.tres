@@ -1,16 +1,26 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bli6ekxtsdk8q"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bli6ekxtsdk8q"]
 
+[ext_resource type="Script" path="res://Skrypty/item_behavior_melee.gd" id="1_72bib"]
 [ext_resource type="Script" path="res://Skrypty/item.gd" id="1_lgbm3"]
-[ext_resource type="Texture2D" uid="uid://c7lyb8qno45k0" path="res://Teksturki/weapon_textures/mieczyk_pysio.png" id="2_pkeg4"]
+[ext_resource type="Texture2D" uid="uid://c5lyacf7eshlu" path="res://Teksturki/weapon_textures/mieczyk_pysio.png" id="2_pkeg4"]
+
+[sub_resource type="Resource" id="Resource_1ixib"]
+script = ExtResource("1_72bib")
 
 [resource]
 script = ExtResource("1_lgbm3")
-name = "Rózowa bestia"
+name = "Mieczyk"
 slot = "weapon"
-description = ""
-level_req = 3
-damage = 50
-speed = 1
-health = 1
-armor = 1
+description = "test mieczyk"
+level_req = 1
+damage = 0
+speed = 0
+health = 0
+armor = 0
 texture = ExtResource("2_pkeg4")
+stackable = false
+stack_size = 1
+max_stack = 50
+equipment_item = false
+usable_item = true
+item_behavior = SubResource("Resource_1ixib")

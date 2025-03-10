@@ -151,7 +151,7 @@ func fill_and_update_inventory_ui(item_container = null):
 			child.queue_free()
 		
 		var eq = player_inventory.equipment
-		var eq_items = [eq["head_armor"], eq["chest_armor"], eq["leg_armor"], eq["boots"], eq["weapon"]]
+		var eq_items = [eq["head_armor"], eq["chest_armor"], eq["leg_armor"], eq["boots"], eq["amulet"]]
 		for item in eq_items: #equipment slots
 			var slot_instance = slot_scene.instantiate()
 			

@@ -11,11 +11,14 @@ extends CharacterBody2D
 @export var obszar_przeszukiwan := 3
 var is_invincible: bool = false
 var invincibility_seconds: float = 0.5
+var default_on_click_behavior = ItemBehaviorMelee.new()
+var current_on_click_behavior: ItemBehavior = null
 
 
 func _ready() -> void:
 	global.player_stat_update.connect(update_stats) 
 	global.toolbar_chosen_item_changed.connect(item_in_hand_changed)
+	current_on_click_behavior = default_on_click_behavior
 	update_stats()
 	add_to_group("player")
 	if not tilemap:
@@ -40,10 +43,11 @@ func _unhandled_input(event):
 				building_node.open_ui()
 	
 	if event.is_action_pressed("shoot"):
-		if not is_instance_valid(proj_manager):
-			proj_manager = get_tree().get_root().find_child("player_projectile_manager", true, false)
-		else:
-			proj_manager._on_shoot(damage)
+		current_on_click_behavior.on_use(self, get_global_mouse_position(), damage)
+		#if not is_instance_valid(proj_manager):
+		#	proj_manager = get_tree().get_root().find_child("player_projectile_manager", true, false)
+		#else:
+		#	proj_manager._on_shoot(damage)
 	
 	if event.is_action_pressed("wheel_up"):
 		if $Camera2D.zoom <= Vector2(1.5, 1.5):
@@ -56,7 +60,8 @@ func _unhandled_input(event):
 
 func item_in_hand_changed(item):
 	if item != null:
-		print(item.name)
+		if item.usable_item == true:
+			current_on_click_behavior = item.item_behavior
 	else:
 		print("no item in hand")
 

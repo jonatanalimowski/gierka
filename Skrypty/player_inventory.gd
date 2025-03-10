@@ -6,19 +6,21 @@ signal item_equipped(item)
 signal item_unequipped(item)
 
 
-var slot_types = ["head_armor", "chest_armor", "leg_armor", "boots", "weapon"]
+var slot_types = ["head_armor", "chest_armor", "leg_armor", "boots", "amulet"]
 var equipment: Dictionary = {
 	"head_armor": null,
 	"chest_armor": null,
 	"leg_armor": null,
 	"boots": null,
-	"weapon": null
+	"amulet": null
 }
 
+var sword_temp = load("res://Resources/Items/sword_pink.tres")
 
 func _ready() -> void: #inicjuje inv_array wypelniajac nullami
 	inv_array.resize(inv_size)
 	inv_array.fill(null)
+	inv_array[0] = sword_temp
 
 
 func equip_item(inv_index, target_slot: String):

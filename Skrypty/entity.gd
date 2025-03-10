@@ -27,6 +27,7 @@ func set_collisions():
 	for mask in collision_masks:
 		set_collision_mask_value(mask, true)
 	add_to_group("enemy")
+	add_to_group("entity")
 
 
 func _physics_process(delta: float) -> void:

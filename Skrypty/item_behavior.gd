@@ -1,6 +1,6 @@
-extends Node
+extends Resource
 class_name ItemBehavior
 
 
-func on_use(user_node):
-	print("hellooo, im being used by ", user_node)
+func on_use(user_node, mouse_pos, damage = 0):
+	pass
