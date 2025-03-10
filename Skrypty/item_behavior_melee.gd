@@ -12,7 +12,9 @@ func on_use(user_node, mouse_pos, damage = 0):
 		user_node.add_child(animation)
 	
 	animation.sprite_frames = load("res://Scenki/melee_animation.tres")
-	#animation.animation = &"new_animation"
+	var angle = mouse_dir.angle()
+	animation.rotation = angle
+	animation.global_position = user_node.global_position + mouse_dir * 35
 	
 	#shapecast
 	if not shapecast.is_inside_tree():
