@@ -1,8 +1,48 @@
-[gd_scene load_steps=3 format=4 uid="uid://cq4tf862al8xl"]
+[gd_scene load_steps=10 format=4 uid="uid://cq4tf862al8xl"]
 
 [ext_resource type="TileSet" uid="uid://cm4kahoo7ralf" path="res://Scenki/tilemap.tres" id="1_5lhwy"]
+[ext_resource type="Texture2D" uid="uid://c8kp0neqf0sdu" path="res://Teksturki/Animations/empty_frame.png" id="2_2rq3c"]
+[ext_resource type="Texture2D" uid="uid://bnke663r2tkll" path="res://Teksturki/Animations/melee_attack_frame1.png" id="3_ls25u"]
+[ext_resource type="Texture2D" uid="uid://bnbvm072xkgi8" path="res://Teksturki/Animations/melee_attack_frame2.png" id="4_xq34n"]
+[ext_resource type="Texture2D" uid="uid://b05rhkr18p8jf" path="res://Teksturki/Animations/melee_attack_frame3.png" id="5_k2mkq"]
+[ext_resource type="Texture2D" uid="uid://cepl5fmqmgor2" path="res://Teksturki/Animations/melee_attack_frame4.png" id="6_w377q"]
+[ext_resource type="Texture2D" uid="uid://60i7v3hp2q71" path="res://Teksturki/Animations/melee_attack_frame5.png" id="7_yu5gm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mleg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_okigs"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2rq3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ls25u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xq34n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k2mkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_w377q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yu5gm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2rq3c")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 30.0
+}]
 
 [node name="Node2D" type="Node2D"]
 
@@ -17,3 +57,8 @@ position = Vector2(88, 1812)
 [node name="ShapeCast2D" type="ShapeCast2D" parent="Marker2D"]
 shape = SubResource("RectangleShape2D_4mleg")
 target_position = Vector2(0, 20)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Marker2D"]
+sprite_frames = SubResource("SpriteFrames_okigs")
+animation = &"new_animation"
+frame_progress = 0.676073
