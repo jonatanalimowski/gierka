@@ -2,7 +2,7 @@ extends Node2D
 @onready var generator = $Node
 var offset = Vector2(0, 0)
 var player_pos: Vector2
-var world_dims = Vector2i(96, 96)
+var world_dims = Vector2i(512, 512)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
@@ -51,8 +51,9 @@ func update_progress(percentage):
 
 func generate_map(seed=69, tilemap=$TileMapLayer):
 	generator.initialise_noise_generator(seed)
-	await generator.generate_map_array_from_seed()
+	chunk_loader.set_chunk_loader_seed(seed)
+	generator.generate_map_array_from_seed()
 	generator.create_map_from_array(tilemap)
 	chunk_loader.tilemap = $TileMapLayer
-	chunk_loader.initialise_chunk_data(world_dims)
+	#chunk_loader.initialise_chunk_data(world_dims)
 	global.emit_signal("map_generated", tilemap.duplicate())

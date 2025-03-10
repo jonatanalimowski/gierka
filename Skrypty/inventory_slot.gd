@@ -2,10 +2,10 @@ extends Control
 
 var item_data: Item = null
 var item_container = null
+var slot_texture_path = "res://Teksturki/inventory_slot.png"
 @export var inv_index: int
 
 
-#jesli slot dotyczy ekwipunku, a nie inventory
 var is_equipment: bool = false
 var is_equipped: bool = false
 var is_slot_equipment: bool = false
@@ -13,8 +13,16 @@ var eq_slot: String
 var stack_size: int
 
 
+func set_chosen(is_chosen):
+	if is_chosen:
+		$Slot.texture = load("res://Teksturki/chosen_inventory_slot.png")
+		slot_texture_path = "res://Teksturki/chosen_inventory_slot.png"
+	else:
+		$Slot.texture = load("res://Teksturki/inventory_slot.png")
+
+
 func _ready() -> void:
-	$Slot.texture = load("res://Teksturki/inventory_slot.png")
+	$Slot.texture = load(slot_texture_path)
 	connect("mouse_entered", mouse_entered)
 	connect("mouse_exited", mouse_exited)
 

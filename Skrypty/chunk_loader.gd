@@ -9,46 +9,58 @@ var last_chunk_visited = Vector2i(-100,-100)
 var generator = WorldGenerator.new()
 
 
-func initialise_chunk_data(world_dims): #when the world has been created
+func set_chunk_loader_seed(seed):
+	generator.initialise_noise_generator(seed)
+
+
+func save_new_chunk(chunk_x, chunk_y): 
 	if tilemap:
-		world_size = world_dims
-		saved_chunks = create_2d_array(world_size.x/chunk_size.x, world_size.y / chunk_size.y, null)
 		
-		for row in range(saved_chunks.size()):
-			for col in range(saved_chunks[row].size()):
-				saved_chunks[row][col] = create_2d_array(chunk_size.x, chunk_size.y, null)
-			
-		for row in range(world_size.x):
-			for col in range(world_size.y): #every index should be int; if its not something went really wrong
-				var chunk_x = row / chunk_size.x  #index in saved_chunks
-				var chunk_y = col / chunk_size.y
-				var tile_x = row % chunk_size.x  #tile index in chunk array
-				var tile_y = col % chunk_size.y
-				
-				var tile_data = tilemap.get_cell_atlas_coords(Vector2i(row, col))
-				if tile_data:
-					saved_chunks[chunk_x][chunk_y][tile_x][tile_y] = tile_data
+		generator.generate_map_array_from_seed(chunk_size, Vector2i(chunk_size.x * chunk_x, chunk_size.y * chunk_y))
+		var chunk_tiles_array = generator.change_numbers_to_tile_vectors(generator.world_data)
+		var chunk_data = {
+			"chunk_pos": Vector2i(chunk_x, chunk_y),
+			"chunk_tiles": chunk_tiles_array
+		}
+		saved_chunks.append(chunk_data)
+		return chunk_data
 
 
 func unload_chunk(chunk_x, chunk_y):
 	if Vector2i(chunk_x, chunk_y) in loaded_chunks:
 		if tilemap:
-			var chunk_index = chunk_pos_to_array_index_vector(chunk_x, chunk_y)
-			for tile_x in range(chunk_size.x):
-				for tile_y in range(chunk_size.y):
-					var tile_pos = Vector2i(chunk_size.x * chunk_x + tile_x, chunk_size.y * chunk_y + tile_y)
-					tilemap.set_cell(tile_pos, 0, Vector2i(-1, -1))
+			var current_chunk_data = []
+			for chunk_data in saved_chunks:
+				if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
+					current_chunk_data = chunk_data["chunk_tiles"]
+			
+			if current_chunk_data:
+				for x in range(current_chunk_data.size()):
+					for y in range(current_chunk_data[x].size()):
+						tilemap.set_cell(Vector2i(chunk_x*chunk_size.x + x, chunk_y*chunk_size.y + y), 0, Vector2i(-1, -1))
+			
 			loaded_chunks.erase(Vector2i(chunk_x, chunk_y))
 
 
 func load_chunk(chunk_x, chunk_y):
 	if Vector2i(chunk_x, chunk_y) not in loaded_chunks:
+		var current_chunk_data = []
+		var was_chunk_generated = false
 		if tilemap:
-			var chunk_index = chunk_pos_to_array_index_vector(chunk_x, chunk_y)
-			for tile_x in range(chunk_size.x):
-				for tile_y in range(chunk_size.y):
-					var tile_pos = Vector2i(chunk_size.x * chunk_x + tile_x, chunk_size.y * chunk_y + tile_y)
-					tilemap.set_cell(tile_pos, 0, saved_chunks[chunk_index.x][chunk_index.y][tile_x][tile_y])
+			#if chunk was generated uses it to load tilemap, if not generates new chunk
+			for chunk_data in saved_chunks:
+				if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
+					current_chunk_data = chunk_data["chunk_tiles"]
+					was_chunk_generated = true
+					break
+			
+			if was_chunk_generated == false:
+				current_chunk_data = save_new_chunk(chunk_x, chunk_y)["chunk_tiles"]
+			
+			for x in range(current_chunk_data.size()):
+				for y in range(current_chunk_data[x].size()):
+					tilemap.set_cell(Vector2i(chunk_x*chunk_size.x + x, chunk_y*chunk_size.y + y), 0, current_chunk_data[x][y])
+			
 			loaded_chunks.append(Vector2i(chunk_x, chunk_y))
 
 

@@ -18,6 +18,7 @@ signal map_generated(tilemap)
 signal player_pos_set(pos)
 signal map_data_ready(data)
 signal player_spawn_ready(pos)
+signal toolbar_chosen_item_changed(item)
 
 var player_current_health: int = 100
 var player_max_health: int = 100
@@ -29,7 +30,7 @@ var player_money: int = 0
 var player_experience: int = 0
 var new_level_threshhold: int = 10
 var player_spawn: Vector2
-var enemy_entities_on_screen: int = 0
+var enemy_entities_alive: int = 0
 var available_buildings = [
 	preload("res://Resources/Buildings/crafting_station.tres"),
 	preload("res://Resources/Buildings/chest.tres")

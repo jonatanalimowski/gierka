@@ -14,3 +14,5 @@ class_name Item
 @export var stack_size: int = 1
 @export var max_stack: int = 50
 @export var equipment_item: bool = true
+@export var usable_item: bool = false
+#var item_behavior: ItemBehavior = null

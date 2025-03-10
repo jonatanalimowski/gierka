@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 
 
 func spawn_entity(): #should be entity in function parameters
-	if global.enemy_entities_on_screen <= 30: #TEMP
+	if global.enemy_entities_alive <= 30: #TEMP
 		var entity = enemy_slime.instantiate() #TEMP
 		if is_instance_valid(player):
 			if is_instance_valid(tilemap):
@@ -51,7 +51,7 @@ func spawn_entity(): #should be entity in function parameters
 				entity.global_position = tilemap.map_to_local(spawn_position)
 				currentscene.add_child(entity)
 				#print("spawned at", tilemap.map_to_local(spawn_position))
-				#global.enemy_entities_on_screen += 1 #???
+				global.enemy_entities_alive += 1
 				
 			else:
 				tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)
@@ -64,6 +64,7 @@ func cull_enemies():
 		for entity in get_tree().get_nodes_in_group("enemy"):
 			if entity.global_position.distance_to(player.global_position) >= 2500: #cull distance
 				entity.queue_free()
+				global.enemy_entities_alive -= 1
 
 
 func get_spawn_position():

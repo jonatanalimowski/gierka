@@ -15,6 +15,7 @@ var invincibility_seconds: float = 0.5
 
 func _ready() -> void:
 	global.player_stat_update.connect(update_stats) 
+	global.toolbar_chosen_item_changed.connect(item_in_hand_changed)
 	update_stats()
 	add_to_group("player")
 	if not tilemap:
@@ -51,6 +52,13 @@ func _unhandled_input(event):
 	if event.is_action_pressed("wheel_down"):
 		if $Camera2D.zoom >= Vector2(0.2, 0.2):#Vector2(0.875, 0.875):
 			$Camera2D.zoom /= 1.15
+
+
+func item_in_hand_changed(item):
+	if item != null:
+		print(item.name)
+	else:
+		print("no item in hand")
 
 
 func check_tiles_for_interaction(): #rly old method

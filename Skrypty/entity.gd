@@ -43,6 +43,7 @@ func take_damage(damage):
 
 
 func die():
+	global.enemy_entities_alive -= 1
 	global.add_xp(xp_drop)
 	roll_for_drops()
 	queue_free()
