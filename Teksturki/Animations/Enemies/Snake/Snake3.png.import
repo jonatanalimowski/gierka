@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8kp0neqf0sdu"
-path="res://.godot/imported/empty_frame.png-71550bb485de14bd07beb2c70387dc0a.ctex"
+uid="uid://cxbjm0w10y7dh"
+path="res://.godot/imported/Snake3.png-6b73d0a4833182516713a7f1764f0033.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Teksturki/Animations/empty_frame.png"
-dest_files=["res://.godot/imported/empty_frame.png-71550bb485de14bd07beb2c70387dc0a.ctex"]
+source_file="res://Teksturki/Animations/Enemies/Snake/Snake3.png"
+dest_files=["res://.godot/imported/Snake3.png-6b73d0a4833182516713a7f1764f0033.ctex"]
 
 [params]
 

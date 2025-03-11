@@ -10,7 +10,7 @@ var drop1 = {
 }
 var drop2 = {
 	"item": preload("res://Resources/Items/rope.tres"),
-	"max_amount": 14,
+	"max_amount": 15,
 	"odds": 5
 }
 var stat_multiplier
@@ -19,9 +19,9 @@ func _ready() -> void:
 	#entity stats
 	is_passive = false
 	stat_multiplier = 0.20 * (global.player_level-1)
-	health = 100 + (100*stat_multiplier)
+	health = 200 + (200*stat_multiplier)
 	max_health = health
-	damage = 25 + (25*stat_multiplier)
+	damage = 50 + (50*stat_multiplier)
 	xp_drop = 1
 	
 	#item drops
@@ -32,7 +32,9 @@ func _ready() -> void:
 	set_collisions()
 	update_healthbar()
 	entity_damaged.connect(update_healthbar) 
-	entity_behavior = SlimeAI.new()
+	entity_behavior = SnakeAI.new()
+	entity_behavior.animation = $AnimatedSprite2D
+	$AnimatedSprite2D.play("walk")
 
 
 func update_healthbar():

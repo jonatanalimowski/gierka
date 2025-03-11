@@ -114,10 +114,7 @@ func check_if_player_crossed_chunks(player_position):
 	if player_occupied_chunk != last_chunk_visited:
 		last_chunk_visited = player_occupied_chunk
 		load_chunks_around_chunk(chunk_x, chunk_y)
-		for chunk_data in saved_chunks:
-			if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
-				player_current_biome = chunk_data["biome"]
-				print(player_current_biome)
+		player_current_biome = get_chunk_biome(player_position)
 
 
 func create_2d_array(rows, cols, fill_val) -> Array:
@@ -134,5 +131,16 @@ func chunk_pos_to_array_index_vector(posx, posy):
 	var chunk_array_size = saved_chunks.size()
 	var index_x = (posx % chunk_array_size + chunk_array_size) % chunk_array_size
 	var index_y = (posy % chunk_array_size + chunk_array_size) % chunk_array_size
-
 	return Vector2i(index_x, index_y)
+
+
+func get_chunk_biome(pos):
+	var pos_in_tilemap = tilemap.local_to_map(pos)
+	var chunk_x = floor(pos_in_tilemap.x*1.0 / chunk_size.x*1.0)
+	var chunk_y = floor(pos_in_tilemap.y*1.0 / chunk_size.y*1.0)
+	load_chunk(chunk_x, chunk_y)
+	for chunk_data in saved_chunks:
+			if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
+				print(chunk_data["biome"])
+				print(chunk_x, chunk_y)
+				return chunk_data["biome"]

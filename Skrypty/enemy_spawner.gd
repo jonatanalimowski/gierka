@@ -1,6 +1,8 @@
 extends Node2D
 
+var ads: Array
 @export var enemy_slime: PackedScene
+@export var enemy_snake: PackedScene
 @onready var player = get_tree().get_root().find_child("player", true, false)
 @onready var tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)
 @onready var currentscene = get_tree().get_root().find_child("CurrentScene", true, false)
@@ -8,6 +10,12 @@ extends Node2D
 @onready var cull_timer = Timer.new()
 var collidable_tiles = [Vector2i(1,1), Vector2i(1,2), Vector2i(2,1), Vector2i(3, 2)]
 var rng = RandomNumberGenerator.new()
+
+@onready var biome_spawns = {
+	"Forest": [enemy_slime],
+	"Dunes": [enemy_snake, enemy_slime],
+	"Tundra": [enemy_slime]
+}
 
 
 func _ready() -> void:
@@ -22,7 +30,7 @@ func _ready() -> void:
 	
 	#spawn timer
 	spawn_timer.timeout.connect(spawn_entity)
-	spawn_timer.wait_time = 2
+	spawn_timer.wait_time = 0.2
 	spawn_timer.autostart = true
 	add_child(spawn_timer)
 	print(spawn_timer)
@@ -39,15 +47,19 @@ func _process(delta: float) -> void:
 	pass
 
 
-func spawn_entity(): #should be entity in function parameters
-	if global.enemy_entities_alive <= 30: #TEMP
-		var entity = enemy_slime.instantiate() #TEMP
+func spawn_entity():
+	if global.enemy_entities_alive <= 10:
 		if is_instance_valid(player):
 			if is_instance_valid(tilemap):
+				#decides which enemy
 				var spawn_position = get_spawn_position()
+				var biome = chunk_loader.get_chunk_biome(tilemap.map_to_local(spawn_position))
+				var entity = biome_spawns[biome].pick_random().instantiate()
 				while tilemap.get_cell_atlas_coords(spawn_position) in collidable_tiles:
 					spawn_position = get_spawn_position()
-					
+					biome = chunk_loader.get_chunk_biome(tilemap.map_to_local(spawn_position))
+					entity = biome_spawns[biome].pick_random().instantiate()
+				print("spawning: ", entity.name, " at: ", biome)
 				entity.global_position = tilemap.map_to_local(spawn_position)
 				currentscene.add_child(entity)
 				#print("spawned at", tilemap.map_to_local(spawn_position))
@@ -79,3 +91,4 @@ func get_spawn_position():
 			tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)
 	else:
 		player = get_tree().get_root().find_child("player", true, false)
+		

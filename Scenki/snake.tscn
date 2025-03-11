@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdj0i62mqkhds"]
+
+[ext_resource type="Script" path="res://Skrypty/snake.gd" id="1_xgk7y"]
+[ext_resource type="Texture2D" uid="uid://bq4lpgol42cfh" path="res://Teksturki/Animations/Enemies/Snake/Snake1.png" id="2_icbc5"]
+[ext_resource type="Texture2D" uid="uid://cs0mksc8nglpo" path="res://Teksturki/Animations/Enemies/Snake/Snake2.png" id="3_5bqpx"]
+[ext_resource type="Texture2D" uid="uid://cxbjm0w10y7dh" path="res://Teksturki/Animations/Enemies/Snake/Snake3.png" id="4_d6vfg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_slcr8"]
+radius = 12.1655
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pqqcl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_icbc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5bqpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d6vfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5bqpx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[node name="snake" type="CharacterBody2D"]
+position = Vector2(477, 212)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_xgk7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_slcr8")
+
+[node name="Health" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -27.0
+offset_right = 42.0
+offset_bottom = -4.0
+scale = Vector2(0.655898, 0.679689)
+text = "100/100"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pqqcl")
+animation = &"walk"
+frame_progress = 0.675734

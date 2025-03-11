@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @onready var tilemap = get_tree().get_root().find_child("TileMapLayer", true, false)
 @onready var proj_manager = get_tree().get_root().find_child("player_projectile_manager", true, false)
-@onready var dash_timer = $DashTimer
+@onready var dash_duration = $DashDuration
+@onready var dash_cooldown = $DashCooldown
 
 @onready var dash_speed = walk_speed*3
 @onready var character_speed = walk_speed
@@ -13,6 +14,7 @@ extends CharacterBody2D
 @export var armor: int = 5
 @export var obszar_przeszukiwan := 3
 
+var can_dash: bool = true
 var is_invincible: bool = false
 var invincibility_seconds: float = 0.5
 var default_on_click_behavior = ItemBehaviorMelee.new()
@@ -20,7 +22,8 @@ var current_on_click_behavior: ItemBehavior = null
 
 
 func _ready() -> void:
-	dash_timer.timeout.connect(dash_finished)
+	dash_cooldown.timeout.connect(func(): can_dash = true)
+	dash_duration.timeout.connect(dash_finished)
 	global.player_stat_update.connect(update_stats) 
 	global.toolbar_chosen_item_changed.connect(item_in_hand_changed)
 	current_on_click_behavior = default_on_click_behavior
@@ -55,16 +58,21 @@ func _unhandled_input(event):
 		#	proj_manager._on_shoot(damage)
 	
 	if event.is_action_pressed("dash"):
-		character_speed = dash_speed
-		is_invincible = true
-		dash_timer.start()
+		if can_dash:
+			character_speed = dash_speed
+			is_invincible = true
+			can_dash = false
+			dash_duration.start()
+			dash_cooldown.start()
+			global.emit_signal("player_dashed", dash_cooldown.wait_time)
+	
 	
 	if event.is_action_pressed("wheel_up"):
 		if $Camera2D.zoom <= Vector2(1.5, 1.5):
 			$Camera2D.zoom *= 1.15
 	
 	if event.is_action_pressed("wheel_down"):
-		if $Camera2D.zoom >= Vector2(0.2, 0.2):#Vector2(0.875, 0.875):
+		if $Camera2D.zoom >= Vector2(0.9, 0.9):
 			$Camera2D.zoom /= 1.15
 
 

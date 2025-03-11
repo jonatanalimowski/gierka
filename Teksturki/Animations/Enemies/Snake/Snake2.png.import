@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cepl5fmqmgor2"
-path="res://.godot/imported/melee_attack_frame4.png-b484c5b21cba48dac9bf3cd7be617710.ctex"
+uid="uid://cs0mksc8nglpo"
+path="res://.godot/imported/Snake2.png-00658fe1666b99e6b5146bf2ab641061.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Teksturki/Animations/melee_attack_frame4.png"
-dest_files=["res://.godot/imported/melee_attack_frame4.png-b484c5b21cba48dac9bf3cd7be617710.ctex"]
+source_file="res://Teksturki/Animations/Enemies/Snake/Snake2.png"
+dest_files=["res://.godot/imported/Snake2.png-00658fe1666b99e6b5146bf2ab641061.ctex"]
 
 [params]
 

@@ -19,6 +19,7 @@ signal player_pos_set(pos)
 signal map_data_ready(data)
 signal player_spawn_ready(pos)
 signal toolbar_chosen_item_changed(item)
+signal player_dashed(dash_cooldown)
 
 var player_current_health: int = 100
 var player_max_health: int = 100
@@ -67,12 +68,12 @@ func change_sprite_color(par):
 			tween.play()
 
 
-func get_sprite(node: Node) -> Sprite2D: #funkcja od  macka
+func get_sprite(node: Node): #funkcja od  macka
 	if not node:
 		return null
 	
 	# If the node itself is a Sprite2D, return it
-	if node is Sprite2D:
+	if node is Sprite2D or node is AnimatedSprite2D:
 		return node
 	
 	# Check children recursively

@@ -3,7 +3,7 @@ var is_ui: bool = true
 var item_container = ItemContainer.new()
 var currently_chosen_item: Item = null
 var chosen_slot_index = 0
-@onready var toolbar_slots = $PanelContainer/MarginContainer/HBoxContainer
+@onready var toolbar_slots = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer
 
 
 func _input(event: InputEvent): #choosing toolbar index

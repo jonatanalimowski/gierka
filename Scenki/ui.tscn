@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://di3y2pbyp6kdq"]
+[gd_scene load_steps=15 format=3 uid="uid://di3y2pbyp6kdq"]
 
 [ext_resource type="Script" path="res://Skrypty/ui.gd" id="1_ymvek"]
 [ext_resource type="Script" path="res://Skrypty/inv_item_drop_zone.gd" id="2_u6v0h"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://Skrypty/chest_ui.gd" id="5_w746n"]
 [ext_resource type="LabelSettings" uid="uid://cssdg5n362yye" path="res://ui_default_text_settings.tres" id="5_y0vgu"]
 [ext_resource type="Script" path="res://Skrypty/tool_bar.gd" id="11_rnhuu"]
+[ext_resource type="Texture2D" uid="uid://c1f5s7norhmme" path="res://Teksturki/UI_textures/progress_bar_stamina.png" id="12_7332a"]
+[ext_resource type="Script" path="res://Scenki/dash_ui_container.gd" id="12_ap74t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_he40f"]
 font_size = 32
@@ -573,7 +575,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("11_rnhuu")
 
-[node name="PanelContainer" type="PanelContainer" parent="MainUI/ToolBar"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/ToolBar"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -581,13 +583,63 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -40.0
+offset_top = -65.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MainUI/ToolBar/PanelContainer"]
+[node name="DashUiContainer" type="HBoxContainer" parent="MainUI/ToolBar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("12_ap74t")
+
+[node name="SpacerLeft" type="Control" parent="MainUI/ToolBar/VBoxContainer/DashUiContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DashCooldown" type="TextureProgressBar" parent="MainUI/ToolBar/VBoxContainer/DashUiContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("3_8kcxk")
+texture_progress = ExtResource("12_7332a")
+
+[node name="Label" type="Label" parent="MainUI/ToolBar/VBoxContainer/DashUiContainer/DashCooldown"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.45
+anchor_right = 0.5
+anchor_bottom = 0.45
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dash"
+
+[node name="SpacerRight" type="Control" parent="MainUI/ToolBar/VBoxContainer/DashUiContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MainUI/ToolBar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainUI/ToolBar/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/ToolBar/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI/ToolBar/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainUI/ToolBar/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
