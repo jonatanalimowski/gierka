@@ -7,7 +7,12 @@ var world_size: Vector2i
 var tilemap: TileMapLayer
 var last_chunk_visited = Vector2i(-100,-100)
 var generator = WorldGenerator.new()
-
+var player_current_biome: String
+var biome_dict = { #currently unused
+	Vector2i(3, 1): "Forest",
+	Vector2i(3, 3): "Dunes",
+	Vector2i(2, 2): "Tundra"
+}
 
 func set_chunk_loader_seed(seed):
 	generator.initialise_noise_generator(seed)
@@ -18,9 +23,31 @@ func save_new_chunk(chunk_x, chunk_y):
 		
 		generator.generate_map_array_from_seed(chunk_size, Vector2i(chunk_size.x * chunk_x, chunk_size.y * chunk_y))
 		var chunk_tiles_array = generator.change_numbers_to_tile_vectors(generator.world_data)
+		
+		#assigns a biome to a chunk; this is really not a good way to do this xd
+		var forest_tiles = 0
+		var dune_tiles = 0
+		var tundra_tiles = 0
+		for x in range(chunk_tiles_array.size()):
+			forest_tiles += chunk_tiles_array[x].count(Vector2i(3, 1))
+			dune_tiles += chunk_tiles_array[x].count(Vector2i(3, 3))
+			tundra_tiles += chunk_tiles_array[x].count(Vector2i(2, 2))
+		
+		var biggest_value = max(forest_tiles, dune_tiles, tundra_tiles)
+		var current_biome: String
+		if forest_tiles == biggest_value:
+			current_biome = "Forest"
+		elif dune_tiles == biggest_value:
+			current_biome = "Dunes"
+		elif tundra_tiles == biggest_value:
+			current_biome = "Tundra"
+		else:
+			current_biome = "No Biome"
+		
 		var chunk_data = {
 			"chunk_pos": Vector2i(chunk_x, chunk_y),
-			"chunk_tiles": chunk_tiles_array
+			"chunk_tiles": chunk_tiles_array,
+			"biome": current_biome
 		}
 		saved_chunks.append(chunk_data)
 		return chunk_data
@@ -87,6 +114,10 @@ func check_if_player_crossed_chunks(player_position):
 	if player_occupied_chunk != last_chunk_visited:
 		last_chunk_visited = player_occupied_chunk
 		load_chunks_around_chunk(chunk_x, chunk_y)
+		for chunk_data in saved_chunks:
+			if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
+				player_current_biome = chunk_data["biome"]
+				print(player_current_biome)
 
 
 func create_2d_array(rows, cols, fill_val) -> Array:

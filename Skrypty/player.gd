@@ -127,6 +127,7 @@ func update_stats():
 	health = global.player_current_health
 	damage = global.player_damage
 	walk_speed = global.player_speed
+	dash_speed = walk_speed*3
 	character_speed = walk_speed
 	armor = global.player_armor
 	global.emit_signal("player_health_changed")
