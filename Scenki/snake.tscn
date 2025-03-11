@@ -49,4 +49,4 @@ text = "100/100"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pqqcl")
 animation = &"walk"
-frame_progress = 0.675734
+frame_progress = 0.395104

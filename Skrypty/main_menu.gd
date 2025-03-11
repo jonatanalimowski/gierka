@@ -4,7 +4,7 @@ var seed
 
 func _ready() -> void:
 	seed = randi()%10000
-	$VBoxContainer3/TextEdit.text_submitted.connect(seed_entered)
+	$VBoxContainer3/TextEdit.text_changed.connect(seed_entered)
 	$VBoxContainer3/TextEdit.text = str(seed)
 	$VBoxContainer/Quit.pressed.connect(quit_game)
 	$VBoxContainer/Generate.pressed.connect(start_generation)

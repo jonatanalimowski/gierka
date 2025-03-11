@@ -141,6 +141,4 @@ func get_chunk_biome(pos):
 	load_chunk(chunk_x, chunk_y)
 	for chunk_data in saved_chunks:
 			if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
-				print(chunk_data["biome"])
-				print(chunk_x, chunk_y)
 				return chunk_data["biome"]

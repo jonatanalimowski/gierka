@@ -10,6 +10,7 @@ func update(entity: Entity, delta: float):
 	
 	if player and entity.global_position.distance_to(player.global_position) <= 300.0:
 		var direction = (player.global_position - entity.global_position).normalized()
+		animation.play("walk")
 		var angle = direction.angle()
 		animation.rotation = angle
 		entity.velocity = direction * walk_speed

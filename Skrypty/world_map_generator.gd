@@ -12,7 +12,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		$Camera2D.zoom *= 1.15
 	
 	if event.is_action_pressed("wheel_down"): #cant stop from culling for some reason
-		$Camera2D.zoom /= 1.15
+		if $Camera2D.zoom >= Vector2(0.075, 0.075):
+			$Camera2D.zoom /= 1.15
 	
 	if event.is_action_pressed("right_mouse"):
 		player_pos = get_global_mouse_position()
