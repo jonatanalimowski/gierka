@@ -23,7 +23,7 @@ func set_collisions():
 	add_to_group("entity")
 
 
-func take_damage(damage, tool_type):
+func take_damage(damage, tool_type = "no_tool"):
 	if tool_type != tool_to_damage:
 		damage = 10
 	global.change_sprite_color(self, true)
