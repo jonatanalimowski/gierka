@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmrton7w47f40"]
+
+[ext_resource type="Script" path="res://Scenki/normal_tree.gd" id="1_xhoh2"]
+[ext_resource type="Texture2D" uid="uid://b2oaxchhsyg3c" path="res://Teksturki/structure_textures/tree_entity.png" id="2_lxwpv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vf0tj"]
+
+[node name="NormalRock" type="StaticBody2D"]
+script = ExtResource("1_xhoh2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vf0tj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -85)
+texture = ExtResource("2_lxwpv")

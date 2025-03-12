@@ -59,7 +59,7 @@ func spawn_entity():
 					spawn_position = get_spawn_position()
 					biome = chunk_loader.get_chunk_biome(tilemap.map_to_local(spawn_position))
 					entity = biome_spawns[biome].pick_random().instantiate()
-				print("spawning: ", entity.name, " at: ", biome)
+				#print("spawning: ", entity.name, " at: ", biome)
 				entity.global_position = tilemap.map_to_local(spawn_position)
 				currentscene.add_child(entity)
 				#print("spawned at", tilemap.map_to_local(spawn_position))
