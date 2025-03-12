@@ -5,7 +5,7 @@ var texture: Texture2D
 
 
 func _ready() -> void:
-	add_to_group("cleared_on_scene_change")
+	#add_to_group("cleared_on_scene_change")
 	add_to_group("dropped_item")
 	if texture:
 		$Sprite2D.texture = texture

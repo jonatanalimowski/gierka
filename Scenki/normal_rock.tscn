@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg7iavfiojjnv"]
+
+[ext_resource type="Script" path="res://Skrypty/normal_rock.gd" id="1_7ck2u"]
+[ext_resource type="Texture2D" uid="uid://cpa5u3hasflye" path="res://Teksturki/structure_textures/rock_entity.png" id="2_esr62"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vf0tj"]
+
+[node name="NormalRock" type="StaticBody2D"]
+script = ExtResource("1_7ck2u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vf0tj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_esr62")

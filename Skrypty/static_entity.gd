@@ -1,23 +1,16 @@
-extends CharacterBody2D
-class_name Entity
+extends StaticBody2D
+class_name StaticEntity
 
 #entity stats
 @export var health: int = 100
-@export var damage: int = 0
-@export var is_passive = true
-@export var xp_drop = 1
 @export var max_health: int
 signal entity_damaged
-
-#ai_type
-var entity_behavior: EntityBehavior = null
 
 #loot_table
 var drops: Array
 
 func _ready() -> void:
 	max_health = health
-
 
 func set_collisions():
 	var collision_masks = [1, 3, 4]
@@ -29,13 +22,8 @@ func set_collisions():
 	add_to_group("entity")
 
 
-func _physics_process(delta: float) -> void:
-	if entity_behavior:
-		entity_behavior.update(self, delta)
-
-
 func take_damage(damage):
-	global.change_sprite_color(self)
+	global.change_sprite_color(self, true)
 	health -= damage
 	entity_damaged.emit()
 	if health <= 0:
@@ -43,8 +31,6 @@ func take_damage(damage):
 
 
 func die():
-	global.enemy_entities_alive -= 1
-	global.add_xp(xp_drop)
 	roll_for_drops()
 	queue_free()
 

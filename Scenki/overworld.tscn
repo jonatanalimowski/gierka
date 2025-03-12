@@ -24,3 +24,5 @@ position = Vector2(0, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("7_3itdg")
+
+[node name="StaticEntities" type="Node2D" parent="."]

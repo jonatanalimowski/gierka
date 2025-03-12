@@ -57,15 +57,23 @@ func level_up():
 	emit_signal("player_stat_update")
 
 
-func change_sprite_color(par):
+func change_sprite_color(par, is_entity_static = false):
 	var sprite = get_sprite(par)
 	if is_instance_valid(sprite):
-		sprite.modulate = Color(5, 0, 0)  # Flash red
-		await get_tree().create_timer(0.1).timeout
-		if is_instance_valid(sprite):
-			var tween = create_tween()
-			tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.15)  # Smooth fade back
-			tween.play()
+		if is_entity_static == false:
+			sprite.modulate = Color(5, 0, 0)  # Flash red
+			await get_tree().create_timer(0.1).timeout
+			if is_instance_valid(sprite):
+				var tween = create_tween()
+				tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.15)  # Smooth fade back
+				tween.play()
+		else:
+			sprite.modulate = Color(0.5, 0.5, 0.5)  # Flash dark
+			await get_tree().create_timer(0.1).timeout
+			if is_instance_valid(sprite):
+				var tween = create_tween()
+				tween.tween_property(sprite, "modulate", Color(1, 1, 1), 0.15)  # Smooth fade back
+				tween.play()
 
 
 func get_sprite(node: Node): #funkcja od  macka

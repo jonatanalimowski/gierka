@@ -5,12 +5,12 @@ extends Entity
 
 var drop1 = {
 	"item": preload("res://Resources/Items/stick.tres"),
-	"max_amount": 10,
+	"max_amount": 4,
 	"odds": 5 #what are the odds of dropping; here one in three
 }
 var drop2 = {
 	"item": preload("res://Resources/Items/rope.tres"),
-	"max_amount": 15,
+	"max_amount": 3,
 	"odds": 5
 }
 var stat_multiplier
@@ -22,7 +22,7 @@ func _ready() -> void:
 	health = 200 + (200*stat_multiplier)
 	max_health = health
 	damage = 50 + (50*stat_multiplier)
-	xp_drop = 1
+	xp_drop = 4
 	
 	#item drops
 	drops.append(drop1)

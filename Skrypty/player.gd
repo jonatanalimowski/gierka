@@ -72,7 +72,7 @@ func _unhandled_input(event):
 			$Camera2D.zoom *= 1.15
 	
 	if event.is_action_pressed("wheel_down"):
-		if $Camera2D.zoom >= Vector2(0.9, 0.9):
+		if $Camera2D.zoom >= Vector2(0.1, 0.1):#Vector2(0.9, 0.9):
 			$Camera2D.zoom /= 1.15
 
 
@@ -124,6 +124,7 @@ func take_damage(damage):
 
 func die():
 	world_state.clear_instanced_objects()
+	player_inventory.drop_inventory()
 	global.player_current_health = global.player_max_health
 	global_position = global.player_spawn
 	global.player_money = 0

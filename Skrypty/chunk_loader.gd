@@ -1,4 +1,9 @@
 extends Node
+var rock_structure = {
+	"scene_path": "res://Scenki/normal_rock.tscn",
+	"chance": 512 #this means one in 512 and is applied per tile when generating
+	}
+
 var seed = 0
 var chunk_size = Vector2i(32, 32)
 var saved_chunks = []
@@ -8,22 +13,27 @@ var tilemap: TileMapLayer
 var last_chunk_visited = Vector2i(-100,-100)
 var generator = WorldGenerator.new()
 var player_current_biome: String
+var rng = RandomNumberGenerator.new()
 var biome_dict = { #currently unused
 	Vector2i(3, 1): "Forest",
 	Vector2i(3, 3): "Dunes",
 	Vector2i(2, 2): "Tundra"
 }
+var instantiated_static_entities: Array = []
+
 
 func set_chunk_loader_seed(seed):
 	generator.initialise_noise_generator(seed)
+	rng.seed = seed
 
 
 func save_new_chunk(chunk_x, chunk_y): 
 	if tilemap:
 		
-		generator.generate_map_array_from_seed(chunk_size, Vector2i(chunk_size.x * chunk_x, chunk_size.y * chunk_y))
+		var offset_vector = Vector2i(chunk_size.x * chunk_x, chunk_size.y * chunk_y)
+		generator.generate_map_array_from_seed(chunk_size, offset_vector)
 		var chunk_tiles_array = generator.change_numbers_to_tile_vectors(generator.world_data)
-		
+		var generated_static_entities = generate_static_entities(offset_vector, chunk_tiles_array)
 		#assigns a biome to a chunk; this is really not a good way to do this xd
 		var forest_tiles = 0
 		var dune_tiles = 0
@@ -44,10 +54,12 @@ func save_new_chunk(chunk_x, chunk_y):
 		else:
 			current_biome = "No Biome"
 		
+		#finalises generation; creates new dictionary with generated data
 		var chunk_data = {
 			"chunk_pos": Vector2i(chunk_x, chunk_y),
 			"chunk_tiles": chunk_tiles_array,
-			"biome": current_biome
+			"biome": current_biome,
+			"generated_entities": generated_static_entities
 		}
 		saved_chunks.append(chunk_data)
 		return chunk_data
@@ -59,13 +71,20 @@ func unload_chunk(chunk_x, chunk_y):
 			var current_chunk_data = []
 			for chunk_data in saved_chunks:
 				if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
-					current_chunk_data = chunk_data["chunk_tiles"]
+					current_chunk_data = chunk_data
 			
+			#sets world tilemap tiles to no tile
 			if current_chunk_data:
-				for x in range(current_chunk_data.size()):
-					for y in range(current_chunk_data[x].size()):
+				for x in range(current_chunk_data["chunk_tiles"].size()):
+					for y in range(current_chunk_data["chunk_tiles"][x].size()):
 						tilemap.set_cell(Vector2i(chunk_x*chunk_size.x + x, chunk_y*chunk_size.y + y), 0, Vector2i(-1, -1))
 			
+			#frees static entities
+			for entity_data in instantiated_static_entities.duplicate():
+				if entity_data["chunk_vector"].x == chunk_x and entity_data["chunk_vector"].y == chunk_y:
+					instantiated_static_entities.erase(entity_data)
+					if is_instance_valid(entity_data["instance_ref"]):
+						entity_data["instance_ref"].queue_free()
 			loaded_chunks.erase(Vector2i(chunk_x, chunk_y))
 
 
@@ -77,17 +96,29 @@ func load_chunk(chunk_x, chunk_y):
 			#if chunk was generated uses it to load tilemap, if not generates new chunk
 			for chunk_data in saved_chunks:
 				if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
-					current_chunk_data = chunk_data["chunk_tiles"]
+					current_chunk_data = chunk_data
 					was_chunk_generated = true
 					break
 			
 			if was_chunk_generated == false:
-				current_chunk_data = save_new_chunk(chunk_x, chunk_y)["chunk_tiles"]
+				current_chunk_data = save_new_chunk(chunk_x, chunk_y)
 			
-			for x in range(current_chunk_data.size()):
-				for y in range(current_chunk_data[x].size()):
-					tilemap.set_cell(Vector2i(chunk_x*chunk_size.x + x, chunk_y*chunk_size.y + y), 0, current_chunk_data[x][y])
+			#sets tiles in worlds tilemap
+			for x in range(current_chunk_data["chunk_tiles"].size()):
+				for y in range(current_chunk_data["chunk_tiles"][x].size()):
+					tilemap.set_cell(Vector2i(chunk_x*chunk_size.x + x, chunk_y*chunk_size.y + y), 0, current_chunk_data["chunk_tiles"][x][y])
 			
+			#instantiates static entities
+			for entity_data in current_chunk_data["generated_entities"]:
+				var entity_instance = entity_data["scene"].instantiate()
+				entity_instance.global_position = entity_data["world_pos"]
+				tilemap.get_parent().find_child("StaticEntities").add_child(entity_instance)
+				
+				var instance_data = {
+					"instance_ref": entity_instance,
+					"chunk_vector": Vector2i(chunk_x, chunk_y)
+				}
+				instantiated_static_entities.append(instance_data)
 			loaded_chunks.append(Vector2i(chunk_x, chunk_y))
 
 
@@ -142,3 +173,19 @@ func get_chunk_biome(pos):
 	for chunk_data in saved_chunks:
 			if chunk_data["chunk_pos"] == Vector2i(chunk_x, chunk_y):
 				return chunk_data["biome"]
+
+
+func generate_static_entities(world_offset_vector, chunk_tiles): #idzie po tilesach, jesli udalo sie rng dla sceny x -> przygotuj data dla sceny x
+	var generated_entities: Array
+	for x in range(chunk_size.x):
+		for y in range(chunk_size.y):
+			if rng.randi_range(1, rock_structure["chance"]) == 1:
+				if tilemap:
+					var generation_pos = world_offset_vector + Vector2i(x, y)
+					if chunk_tiles[x][y] != Vector2i(3, 2): # water
+						var generated_entity_data = {
+							"scene": load(rock_structure["scene_path"]),
+							"world_pos": tilemap.map_to_local(generation_pos)
+						}
+						generated_entities.append(generated_entity_data)
+	return generated_entities

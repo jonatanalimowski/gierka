@@ -5,13 +5,13 @@ extends Entity
 
 var drop1 = {
 	"item": preload("res://Resources/Items/stick.tres"),
-	"max_amount": 10,
-	"odds": 5 #what are the odds of dropping; here one in three
+	"max_amount": 2,
+	"odds": 3 #what are the odds of dropping; here one in three
 }
 var drop2 = {
 	"item": preload("res://Resources/Items/rope.tres"),
-	"max_amount": 14,
-	"odds": 5
+	"max_amount": 2,
+	"odds": 3
 }
 var stat_multiplier
 

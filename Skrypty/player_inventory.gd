@@ -79,3 +79,8 @@ func drop_item(inv_index, stack_size):
 			inv_array[inv_index] = null
 			
 		global.emit_signal("inventory_updated", self)
+
+
+func drop_inventory():
+	for i in range(inv_size):
+		drop_item(i, null)
