@@ -2,6 +2,7 @@ extends StaticBody2D
 class_name StaticEntity
 
 #entity stats
+@export var tool_to_damage: String = "no_tool"
 @export var health: int = 100
 @export var max_health: int
 signal entity_damaged
@@ -22,7 +23,9 @@ func set_collisions():
 	add_to_group("entity")
 
 
-func take_damage(damage):
+func take_damage(damage, tool_type):
+	if tool_type != tool_to_damage:
+		damage = 10
 	global.change_sprite_color(self, true)
 	health -= damage
 	entity_damaged.emit()

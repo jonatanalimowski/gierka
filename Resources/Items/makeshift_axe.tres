@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://m4bn1v28hu44"]
+
+[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_78x02"]
+[ext_resource type="Texture2D" uid="uid://ypuuuea5bth7" path="res://Teksturki/weapon_textures/basic_axe.png" id="2_tr7yk"]
+
+[resource]
+script = ExtResource("1_78x02")
+name = "Makeshift Axe"
+slot = "tool"
+description = "Basic tool used for cutting trees"
+level_req = 1
+damage = 25
+speed = 0
+health = 0
+armor = 0
+texture = ExtResource("2_tr7yk")
+stackable = false
+stack_size = 1
+max_stack = 50
+equipment_item = false
+usable_item = true

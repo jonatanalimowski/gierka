@@ -4,15 +4,11 @@ extends Entity
 @onready var currentscene = get_tree().get_root().find_child("CurrentScene", true, false)
 
 var drop1 = {
-	"item": preload("res://Resources/Items/stick.tres"),
+	"item": preload("res://Resources/Items/slime_gel.tres"),
 	"max_amount": 2,
-	"odds": 3 #what are the odds of dropping; here one in three
+	"odds": 2 #what are the odds of dropping; here one in three
 }
-var drop2 = {
-	"item": preload("res://Resources/Items/rope.tres"),
-	"max_amount": 2,
-	"odds": 3
-}
+
 var stat_multiplier
 
 func _ready() -> void:
@@ -26,7 +22,6 @@ func _ready() -> void:
 	
 	#item drops
 	drops.append(drop1)
-	drops.append(drop2)
 	
 	#misc
 	set_collisions()
