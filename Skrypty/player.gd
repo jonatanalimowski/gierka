@@ -85,8 +85,10 @@ func item_in_hand_changed(item):
 	if item != null:
 		if item.usable_item == true:
 			current_on_click_behavior = item.item_behavior
+		else:
+			current_on_click_behavior = default_on_click_behavior
 	else:
-		print("no item in hand")
+		current_on_click_behavior = default_on_click_behavior
 
 
 func check_tiles_for_interaction(): #rly old method

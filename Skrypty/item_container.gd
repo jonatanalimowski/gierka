@@ -59,8 +59,12 @@ func look_for_item(item = null, item_name = null):
 
 
 func swap_items_inv(from_index, to_index):
+	print("swtapping:!")
 	var item1 = inv_array[from_index]
 	var item2 = inv_array[to_index]
+	print(item1, item2)
+	if from_index == to_index:
+		return
 	if item1 != null and item2 != null:
 		if item1.name == item2.name and item1.stackable == true:
 			var stack_space_left = item2.max_stack - item2.stack_size
@@ -73,8 +77,12 @@ func swap_items_inv(from_index, to_index):
 				item1.stack_size -= stack_space_left
 				
 			global.emit_signal("inventory_updated", self)
+		else:
+			inv_array[to_index] = inv_array[from_index]
+			inv_array[from_index] = item2
+			global.emit_signal("inventory_updated", self)
 	else:
-		inv_array[to_index] = item1
+		inv_array[to_index] = inv_array[from_index]
 		inv_array[from_index] = item2
 		global.emit_signal("inventory_updated", self)
 
@@ -101,6 +109,10 @@ func swap_items_between_containers(cont1, cont2, cont1_index, cont2_index):
 		if cont1.inv_array[cont1_index].name == cont2.inv_array[cont2_index].name:
 			cont2.add_item(cont1.inv_array[cont1_index])
 			cont1.inv_array[cont1_index] = null
+		else:
+			var temp = cont1.inv_array[cont1_index]
+			cont1.inv_array[cont1_index] = cont2.inv_array[cont2_index]
+			cont2.inv_array[cont2_index] = temp
 	else:
 		var temp = cont1.inv_array[cont1_index]
 		cont1.inv_array[cont1_index] = cont2.inv_array[cont2_index]

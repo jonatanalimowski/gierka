@@ -6,6 +6,6 @@ var drop2 = {
 }
 
 func _ready() -> void:
-	health = 500
+	health = 5
 	drops.append(drop2)
 	add_to_group("entity")

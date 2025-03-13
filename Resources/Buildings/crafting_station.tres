@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="building_def" load_steps=6 format=3 uid="uid://bmufc7yhvucbd"]
+[gd_resource type="Resource" script_class="building_def" load_steps=7 format=3 uid="uid://bmufc7yhvucbd"]
 
 [ext_resource type="PackedScene" uid="uid://bgb507aggdqbj" path="res://Scenki/crafting_station.tscn" id="1_5sf4b"]
 [ext_resource type="Script" path="res://Skrypty/building_definitions.gd" id="1_fk2mr"]
 [ext_resource type="Resource" uid="uid://bqw7wdu6qno6e" path="res://Resources/Recipes/abyssal_chest_recipe.tres" id="2_nwtdx"]
 [ext_resource type="Resource" uid="uid://cd0t8phpruwth" path="res://Resources/Recipes/lich_skull_recipe.tres" id="3_3nrk5"]
 [ext_resource type="Texture2D" uid="uid://bidp4xp42xvwc" path="res://Teksturki/structure_textures/crafting_station1_texture.png" id="3_o7imw"]
+[ext_resource type="Resource" uid="uid://14dsp7qi6ibu" path="res://Resources/Recipes/makeshift_axe_recipe.tres" id="4_031ya"]
 
 [resource]
 script = ExtResource("1_fk2mr")
@@ -16,6 +17,7 @@ level_requirement = 1
 has_recipes = true
 recipes = {
 "Abyssal Chestplate": ExtResource("2_nwtdx"),
+"Makeshift Axe": ExtResource("4_031ya"),
 "Skull of the fallen lich": ExtResource("3_3nrk5")
 }
 has_inventory = false

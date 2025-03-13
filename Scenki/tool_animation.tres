@@ -31,7 +31,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_ufjc7")
 }],
-"loop": true,
+"loop": false,
 "name": &"use_animation",
-"speed": 5.0
+"speed": 30.0
 }]
