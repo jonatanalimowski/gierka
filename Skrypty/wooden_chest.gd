@@ -3,11 +3,19 @@ extends Node2D
 var collisions_disabled = false
 var is_active = true
 var ui_open = false
+var is_popup = false
 var loaded_inv_array = []
 
 @onready var building_data = load("res://Resources/Buildings/chest.tres")
+@onready var popup = $Popup
 @onready var item_container = $Item_Container
 @onready var ui_grid = $CanvasLayer/Chest_UI/PanelContainer/MarginContainer/GridContainer
+
+
+func toggle_popup():
+	if is_active:
+		is_popup = !is_popup
+		popup.visible = is_popup
 
 
 func toggle_collisions():
@@ -16,6 +24,8 @@ func toggle_collisions():
 
 
 func _ready() -> void:
+	print(find_child("Popup", true, false))
+	print(get_node("Popup"))
 	item_container.container_name = "chest_container"
 	if loaded_inv_array:
 		item_container.inv_array = loaded_inv_array

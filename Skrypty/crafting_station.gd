@@ -2,7 +2,15 @@ extends Node2D
 
 var collisions_disabled = false
 var is_active = true
+var is_popup = false
 @onready var building_data = load("res://Resources/Buildings/crafting_station.tres")
+
+
+func toggle_popup():
+	if is_active:
+		is_popup = !is_popup
+		$Popup.visible = is_popup
+
 
 func toggle_collisions():
 	collisions_disabled = !collisions_disabled
@@ -10,6 +18,7 @@ func toggle_collisions():
 
 
 func _ready() -> void:
+	$Popup.visible = is_popup
 	$Area2D.add_to_group("building_interaction")
 	add_to_group("building")
 	global.connect("craft_item", craft_item)
