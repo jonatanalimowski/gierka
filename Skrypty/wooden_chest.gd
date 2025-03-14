@@ -24,8 +24,6 @@ func toggle_collisions():
 
 
 func _ready() -> void:
-	print(find_child("Popup", true, false))
-	print(get_node("Popup"))
 	item_container.container_name = "chest_container"
 	if loaded_inv_array:
 		item_container.inv_array = loaded_inv_array

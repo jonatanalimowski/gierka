@@ -14,6 +14,10 @@ radius = 21.0238
 [node name="wooden_chest" type="Node2D"]
 script = ExtResource("1_7dm3b")
 
+[node name="Popup" type="Sprite2D" parent="."]
+position = Vector2(0, -40)
+texture = ExtResource("4_0xng5")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
 texture = ExtResource("2_6cqi7")
@@ -33,7 +37,3 @@ debug_color = Color(0.921468, 0.23476, 0.392542, 0.42)
 [node name="Item_Container" type="Node" parent="."]
 script = ExtResource("3_oaqfy")
 inv_size = 36
-
-[node name="Popup" type="Sprite2D" parent="."]
-position = Vector2(0, -35)
-texture = ExtResource("4_0xng5")
