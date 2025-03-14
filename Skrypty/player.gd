@@ -46,9 +46,11 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 		var building_node = $InteractionArea.closest_building_node
-		if building_node:
+		if is_instance_valid(building_node):
 			if building_node.has_method("open_ui"):
 				building_node.open_ui()
+			elif building_node.has_method("interact"):
+				building_node.interact()
 	
 	if event.is_action_pressed("shoot"):
 		current_on_click_behavior.on_use(self, get_global_mouse_position(), damage)

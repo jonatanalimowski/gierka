@@ -20,7 +20,7 @@ func _on_body_exited(body):
 
 
 func _on_area_entered(area):
-	if area.is_in_group("building_interaction"):
+	if area.is_in_group("building_interaction") or area.is_in_group("interactable"):
 		var building_node = area.get_parent()
 		var building_data = {
 			"position": building_node.global_position,
@@ -53,7 +53,7 @@ func update_closest():
 
 
 func _on_area_exited(area):
-	if area.is_in_group("building_interaction"):
+	if area.is_in_group("building_interaction") or area.is_in_group("interactable"):
 		var building_node = area.get_parent()
 		for building_data in buildings_in_area_data.duplicate():
 			if building_data["building_node"].get_ref() == building_node:
