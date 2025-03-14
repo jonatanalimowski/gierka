@@ -44,7 +44,12 @@ func update_closest():
 		if distance_to_player < smallest_distance:
 			smallest_distance = distance_to_player
 			temp_node_container = node_ref
+			
+	if is_instance_valid(closest_building_node):
+		closest_building_node.toggle_popup()
 	closest_building_node = temp_node_container
+	if is_instance_valid(closest_building_node):
+		closest_building_node.toggle_popup()
 
 
 func _on_area_exited(area):
