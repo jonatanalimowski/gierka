@@ -6,6 +6,8 @@ var drop2 = {
 }
 
 func _ready() -> void:
-	health = 5
+	health = 200
 	drops.append(drop2)
+	tool_to_damage = "Pickaxe"
 	add_to_group("entity")
+	add_to_group("static_entity")

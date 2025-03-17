@@ -42,7 +42,7 @@ func on_use(user_node, mouse_pos, damage = 0):
 		animation.play("use_animation")
 		if shapecast.is_colliding():
 			var body = shapecast.get_collider(0)
-			if body.is_in_group("tree_entity"):
+			if body.is_in_group("static_entity"):
 				body.take_damage(tool_damage, tool_type)
 			elif body.is_in_group("entity"):
 				body.take_damage(weapon_damage + user_node.damage)

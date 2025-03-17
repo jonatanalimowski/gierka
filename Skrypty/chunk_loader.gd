@@ -2,7 +2,8 @@ extends Node
 var static_entities_data = [
 	{"scene": preload("res://Scenki/normal_rock.tscn"), "chance": 512, "biome": "Forest"},
 	{"scene": preload("res://Scenki/normal_tree.tscn"), "chance": 512, "biome": "Forest"},
-	{"scene": preload("res://Scenki/normal_bush.tscn"), "chance": 256, "biome": "Forest"}
+	{"scene": preload("res://Scenki/normal_bush.tscn"), "chance": 256, "biome": "Forest"},
+	{"scene": preload("res://Scenki/normal_rock_pickup.tscn"), "chance": 256, "biome": "Forest"}
 ]
 
 var seed = 0

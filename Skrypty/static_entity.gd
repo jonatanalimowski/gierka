@@ -28,7 +28,7 @@ func set_collisions():
 func take_damage(damage, tool_type = "no_tool"):
 	print(tool_type)
 	if tool_type != tool_to_damage:
-		damage = 1
+		damage = 0
 	global.change_sprite_color(self, true)
 	health -= damage
 	entity_damaged.emit()

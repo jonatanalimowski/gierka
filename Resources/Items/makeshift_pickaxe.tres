@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://poa13k02arr1"]
+
+[ext_resource type="Script" path="res://Skrypty/item_behavior_tool.gd" id="1_f0l5j"]
+[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_jbhp1"]
+[ext_resource type="Texture2D" uid="uid://c3mompq87tebw" path="res://Teksturki/weapon_textures/basic_pickaxe.png" id="3_bbpiq"]
+
+[sub_resource type="Resource" id="Resource_mvoun"]
+script = ExtResource("1_f0l5j")
+tool_type = "Pickaxe"
+tool_strength = 1
+weapon_damage = 10
+tool_damage = 25
+
+[resource]
+script = ExtResource("1_jbhp1")
+name = "Makeshift Pickaxe"
+slot = "tool"
+description = "Basic tool used for mining"
+level_req = 1
+damage = 10
+speed = 0
+health = 0
+armor = 0
+texture = ExtResource("3_bbpiq")
+stackable = false
+stack_size = 1
+max_stack = 50
+equipment_item = false
+usable_item = true
+item_behavior = SubResource("Resource_mvoun")

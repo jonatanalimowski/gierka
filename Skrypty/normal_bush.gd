@@ -8,7 +8,6 @@ var drop1 = {
 
 
 func toggle_popup():
-	print("hejka")
 	if can_harvest:
 		$Popup.visible = !$Popup.visible
 	else:
@@ -16,17 +15,19 @@ func toggle_popup():
 
 
 func _ready() -> void:
-	tool_to_damage = "Axe"
+	tool_to_damage = "no_tool"
 	$Popup.visible = false
 	health = 3
 	drops.append(drop1)
 	add_to_group("entity")
+	add_to_group("static_entity")
 	$InteractArea.add_to_group("interactable")
 
 
 func interact():
 	if can_harvest:
-		#player_inventory.add_item(drop1["item"])
-		roll_for_drops()
+		var drop_item = drop1["item"].duplicate()
+		drop_item.stack_size = randi_range(1, drop1["max_amount"])
+		player_inventory.add_item(drop_item)
 		can_harvest = false
 		toggle_popup()
