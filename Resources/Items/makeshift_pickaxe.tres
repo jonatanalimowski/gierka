@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Skrypty/item_behavior_tool.gd" id="1_f0l5j"]
 [ext_resource type="Script" path="res://Skrypty/item.gd" id="1_jbhp1"]
-[ext_resource type="Texture2D" uid="uid://c3mompq87tebw" path="res://Teksturki/weapon_textures/basic_pickaxe.png" id="3_bbpiq"]
 
 [sub_resource type="Resource" id="Resource_mvoun"]
 script = ExtResource("1_f0l5j")
@@ -10,6 +9,9 @@ tool_type = "Pickaxe"
 tool_strength = 1
 weapon_damage = 10
 tool_damage = 25
+
+[sub_resource type="Resource" id="Resource_1ib73"]
+metadata/__load_path__ = "res://Teksturki/weapon_textures/basic_pickaxe.png"
 
 [resource]
 script = ExtResource("1_jbhp1")
@@ -21,7 +23,7 @@ damage = 10
 speed = 0
 health = 0
 armor = 0
-texture = ExtResource("3_bbpiq")
+texture = SubResource("Resource_1ib73")
 stackable = false
 stack_size = 1
 max_stack = 50
