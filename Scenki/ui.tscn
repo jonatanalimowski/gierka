@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://di3y2pbyp6kdq"]
+[gd_scene load_steps=16 format=3 uid="uid://di3y2pbyp6kdq"]
 
 [ext_resource type="Script" path="res://Skrypty/ui.gd" id="1_ymvek"]
 [ext_resource type="Script" path="res://Skrypty/inv_item_drop_zone.gd" id="2_u6v0h"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://110od3aq7gcu" path="res://Teksturki/UI_textures/progress_bar_xp.png" id="4_uhrxg"]
 [ext_resource type="Script" path="res://Skrypty/chest_ui.gd" id="5_w746n"]
 [ext_resource type="LabelSettings" uid="uid://cssdg5n362yye" path="res://ui_default_text_settings.tres" id="5_y0vgu"]
+[ext_resource type="Script" path="res://Scenki/time_ui.gd" id="6_6u6cg"]
 [ext_resource type="Script" path="res://Skrypty/tool_bar.gd" id="11_rnhuu"]
 [ext_resource type="Texture2D" uid="uid://c1f5s7norhmme" path="res://Teksturki/UI_textures/progress_bar_stamina.png" id="12_7332a"]
 [ext_resource type="Script" path="res://Scenki/dash_ui_container.gd" id="12_ap74t"]
@@ -189,6 +190,44 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="GridContainer" type="GridContainer" parent="BaseUI/ChestUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TimeUI" type="Control" parent="BaseUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_6u6cg")
+
+[node name="PanelContainer" type="PanelContainer" parent="BaseUI/TimeUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -87.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="BaseUI/TimeUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BaseUI/TimeUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Day" type="Label" parent="BaseUI/TimeUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Hour" type="Label" parent="BaseUI/TimeUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Minute" type="Label" parent="BaseUI/TimeUI/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="PauseUI" type="Control" parent="."]

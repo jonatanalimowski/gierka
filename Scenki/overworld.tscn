@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2udn1xhvmtt0"]
+[gd_scene load_steps=10 format=3 uid="uid://d2udn1xhvmtt0"]
 
 [ext_resource type="Script" path="res://Skrypty/overworld.gd" id="1_a252c"]
 [ext_resource type="PackedScene" uid="uid://cjirbtarelhv3" path="res://Scenki/gracz.tscn" id="2_uo4yy"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ceolihack76rl" path="res://Scenki/player_projectile_manager.tscn" id="5_osxyk"]
 [ext_resource type="PackedScene" uid="uid://dorbe84xjypgu" path="res://Resources/Recipes/build_mode.tscn" id="6_86pk5"]
 [ext_resource type="TileSet" uid="uid://cm4kahoo7ralf" path="res://Scenki/tilemap.tres" id="7_3itdg"]
+[ext_resource type="Script" path="res://Skrypty/day_night_cycle.gd" id="8_r3grr"]
+[ext_resource type="Texture2D" uid="uid://bkpc1kjm4t2xn" path="res://Resources/Misc/daynightcycle-gradient-texture.tres" id="9_khfrd"]
 
 [node name="overworld_node" type="Node2D"]
 script = ExtResource("1_a252c")
@@ -26,3 +28,7 @@ position = Vector2(0, 0)
 tile_set = ExtResource("7_3itdg")
 
 [node name="StaticEntities" type="Node2D" parent="."]
+
+[node name="DayNightCycle" type="CanvasModulate" parent="."]
+script = ExtResource("8_r3grr")
+gradient = ExtResource("9_khfrd")

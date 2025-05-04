@@ -20,6 +20,7 @@ signal map_data_ready(data)
 signal player_spawn_ready(pos)
 signal toolbar_chosen_item_changed(item)
 signal player_dashed(dash_cooldown)
+signal time_updated(day, hour, minute)
 
 var player_current_health: int = 100
 var player_max_health: int = 100
