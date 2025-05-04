@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgb507aggdqbj"]
 
-[ext_resource type="Script" path="res://Skrypty/crafting_station.gd" id="1_e5h7v"]
+[ext_resource type="Script" uid="uid://cy4s30cqgd6ex" path="res://Skrypty/crafting_station.gd" id="1_e5h7v"]
 [ext_resource type="Texture2D" uid="uid://bidp4xp42xvwc" path="res://Teksturki/structure_textures/crafting_station1_texture.png" id="2_bg5qu"]
 [ext_resource type="Texture2D" uid="uid://b8lb3vu8gjand" path="res://Teksturki/UI_textures/press_e_popup.png" id="3_c6r5b"]
 

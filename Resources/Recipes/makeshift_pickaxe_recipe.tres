@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="recipe_base" load_steps=4 format=3 uid="uid://clppb2sspsq88"]
 
 [ext_resource type="Resource" uid="uid://poa13k02arr1" path="res://Resources/Items/makeshift_pickaxe.tres" id="1_8ykcd"]
-[ext_resource type="Script" path="res://Skrypty/recipe_base.gd" id="2_2kwbd"]
+[ext_resource type="Script" uid="uid://cxdehtx340yxw" path="res://Skrypty/recipe_base.gd" id="2_2kwbd"]
 [ext_resource type="Texture2D" uid="uid://c3mompq87tebw" path="res://Teksturki/weapon_textures/basic_pickaxe.png" id="3_r7cpy"]
 
 [resource]

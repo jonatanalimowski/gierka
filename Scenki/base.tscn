@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://b24o882ab4vbg"]
 
-[ext_resource type="Script" path="res://Skrypty/base.gd" id="1_431qs"]
+[ext_resource type="Script" uid="uid://c53xrnwtqc6gh" path="res://Skrypty/base.gd" id="1_431qs"]
 [ext_resource type="TileSet" uid="uid://cm4kahoo7ralf" path="res://Scenki/tilemap.tres" id="2_r1d6p"]
 [ext_resource type="PackedScene" uid="uid://cjirbtarelhv3" path="res://Scenki/gracz.tscn" id="3_83sr7"]
 [ext_resource type="PackedScene" uid="uid://0w62wiggbu6e" path="res://Scenki/teleport.tscn" id="4_7208a"]

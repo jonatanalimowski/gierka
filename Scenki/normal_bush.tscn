@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://2nswge4dj135"]
 
-[ext_resource type="Script" path="res://Skrypty/normal_bush.gd" id="1_ea6dc"]
+[ext_resource type="Script" uid="uid://c6vp2r14fbg6n" path="res://Skrypty/normal_bush.gd" id="1_ea6dc"]
 [ext_resource type="Texture2D" uid="uid://dm0vbro7gre5e" path="res://Teksturki/structure_textures/stick_bush.png" id="2_5fni5"]
 [ext_resource type="Texture2D" uid="uid://b8lb3vu8gjand" path="res://Teksturki/UI_textures/press_e_popup.png" id="3_vvx2e"]
 

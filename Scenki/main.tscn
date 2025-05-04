@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b66at4l1u5ney"]
 
-[ext_resource type="Script" path="res://Skrypty/game_manager.gd" id="1_y5cvy"]
+[ext_resource type="Script" uid="uid://drchwjlgw5xfd" path="res://Skrypty/game_manager.gd" id="1_y5cvy"]
 [ext_resource type="PackedScene" uid="uid://di3y2pbyp6kdq" path="res://Scenki/ui.tscn" id="2_36px0"]
 [ext_resource type="PackedScene" uid="uid://brnimy8bdwh76" path="res://Scenki/main_menu.tscn" id="2_pa1cw"]
 [ext_resource type="PackedScene" uid="uid://bu0qx35i5sp" path="res://Scenki/world_map_generator_scene.tscn" id="3_v0erv"]

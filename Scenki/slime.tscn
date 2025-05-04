@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://7n43qqprliea"]
 
 [ext_resource type="Texture2D" uid="uid://bvrxns8o7bsyk" path="res://Teksturki/enemy_slime_sprite.png" id="1_c0lwc"]
-[ext_resource type="Script" path="res://Skrypty/slime.gd" id="1_nfvo5"]
+[ext_resource type="Script" uid="uid://bom55eoxyshcd" path="res://Skrypty/slime.gd" id="1_nfvo5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_slcr8"]
 radius = 12.1655

@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjirbtarelhv3"]
 
-[ext_resource type="Script" path="res://Skrypty/player.gd" id="1_bxcj6"]
+[ext_resource type="Script" uid="uid://sinsurgqog6c" path="res://Skrypty/player.gd" id="1_bxcj6"]
 [ext_resource type="Texture2D" uid="uid://da4tp023ao5kl" path="res://Teksturki/player_sprite.png" id="3_ek87y"]
-[ext_resource type="Script" path="res://Skrypty/player_interaction_area.gd" id="4_8di7q"]
-[ext_resource type="Script" path="res://Skrypty/gracz_hitbox.gd" id="4_qb6th"]
+[ext_resource type="Script" uid="uid://chq82nqmo1xxn" path="res://Skrypty/player_interaction_area.gd" id="4_8di7q"]
+[ext_resource type="Script" uid="uid://bpwnro03r4o03" path="res://Skrypty/gracz_hitbox.gd" id="4_qb6th"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fqu10"]
 radius = 12.0

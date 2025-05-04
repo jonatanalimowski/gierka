@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://m4bn1v28hu44"]
 
-[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_78x02"]
-[ext_resource type="Script" path="res://Skrypty/item_behavior_tool.gd" id="1_u8wlg"]
+[ext_resource type="Script" uid="uid://ckd3hhvn2s61y" path="res://Skrypty/item.gd" id="1_78x02"]
+[ext_resource type="Script" uid="uid://cxnc40wtbh24s" path="res://Skrypty/item_behavior_tool.gd" id="1_u8wlg"]
 [ext_resource type="Texture2D" uid="uid://ypuuuea5bth7" path="res://Teksturki/weapon_textures/basic_axe.png" id="2_tr7yk"]
 
 [sub_resource type="Resource" id="Resource_x3x6c"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmrton7w47f40"]
 
-[ext_resource type="Script" path="res://Skrypty/normal_tree.gd" id="1_xhoh2"]
+[ext_resource type="Script" uid="uid://iyi2yqx1rcsj" path="res://Skrypty/normal_tree.gd" id="1_xhoh2"]
 [ext_resource type="Texture2D" uid="uid://b2oaxchhsyg3c" path="res://Teksturki/structure_textures/tree_entity.png" id="2_lxwpv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vf0tj"]

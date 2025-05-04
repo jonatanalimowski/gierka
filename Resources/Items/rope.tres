@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://oe3mbv3g62uq"]
 
-[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_q7adk"]
+[ext_resource type="Script" uid="uid://ckd3hhvn2s61y" path="res://Skrypty/item.gd" id="1_q7adk"]
 [ext_resource type="Texture2D" uid="uid://b5s03n6ajq3r6" path="res://Teksturki/misc_item_textures/rope_texture.png" id="2_hnp6y"]
 
 [resource]
@@ -18,3 +18,4 @@ stackable = true
 stack_size = 1
 max_stack = 50
 equipment_item = false
+usable_item = false

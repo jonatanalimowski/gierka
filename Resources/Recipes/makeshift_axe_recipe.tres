@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="recipe_base" load_steps=4 format=3 uid="uid://14dsp7qi6ibu"]
 
-[ext_resource type="Script" path="res://Skrypty/recipe_base.gd" id="1_5ye33"]
+[ext_resource type="Script" uid="uid://cxdehtx340yxw" path="res://Skrypty/recipe_base.gd" id="1_5ye33"]
 [ext_resource type="Resource" uid="uid://m4bn1v28hu44" path="res://Resources/Items/makeshift_axe.tres" id="1_obcjv"]
 [ext_resource type="Texture2D" uid="uid://ypuuuea5bth7" path="res://Teksturki/weapon_textures/basic_axe.png" id="3_uatv8"]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://kbkpxdtdd8of"]
 
-[ext_resource type="Script" path="res://Skrypty/wooden_chest.gd" id="1_7dm3b"]
+[ext_resource type="Script" uid="uid://br1uojkpta8e6" path="res://Skrypty/wooden_chest.gd" id="1_7dm3b"]
 [ext_resource type="Texture2D" uid="uid://dd34pn4yvnn81" path="res://Teksturki/structure_textures/chest_texture.png" id="2_6cqi7"]
-[ext_resource type="Script" path="res://Skrypty/item_container.gd" id="3_oaqfy"]
+[ext_resource type="Script" uid="uid://cu5ab7die4hh4" path="res://Skrypty/item_container.gd" id="3_oaqfy"]
 [ext_resource type="Texture2D" uid="uid://b8lb3vu8gjand" path="res://Teksturki/UI_textures/press_e_popup.png" id="4_0xng5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8p7o"]

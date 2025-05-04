@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://odsludeqpn5o"]
 
-[ext_resource type="Script" path="res://Skrypty/enemy_spawner.gd" id="1_4gqya"]
+[ext_resource type="Script" uid="uid://b8jicmi4dnxhi" path="res://Skrypty/enemy_spawner.gd" id="1_4gqya"]
 [ext_resource type="PackedScene" uid="uid://7n43qqprliea" path="res://Scenki/slime.tscn" id="2_sl0f6"]
 [ext_resource type="PackedScene" uid="uid://cdj0i62mqkhds" path="res://Scenki/snake.tscn" id="3_uyui6"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw86uqcoupm65"]
 
-[ext_resource type="Script" path="res://Skrypty/teleport.gd" id="1_ar6pp"]
+[ext_resource type="Script" uid="uid://yg4dbf1748w6" path="res://Skrypty/teleport.gd" id="1_ar6pp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ar14h"]
 

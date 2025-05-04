@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://d2udn1xhvmtt0"]
 
-[ext_resource type="Script" path="res://Skrypty/expedition.gd" id="1_bgry5"]
+[ext_resource type="Script" uid="uid://cksqa2qdqtxjh" path="res://Skrypty/expedition.gd" id="1_bgry5"]
 [ext_resource type="TileSet" uid="uid://cm4kahoo7ralf" path="res://Scenki/tilemap.tres" id="2_5em87"]
 [ext_resource type="PackedScene" uid="uid://odsludeqpn5o" path="res://Scenki/enemy_spawner.tscn" id="2_d16jj"]
 [ext_resource type="PackedScene" uid="uid://cjirbtarelhv3" path="res://Scenki/gracz.tscn" id="3_apmdi"]

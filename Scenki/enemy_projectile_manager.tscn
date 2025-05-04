@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dicfikc5ouv2u"]
 
-[ext_resource type="Script" path="res://Skrypty/enemy_projectile_manager.gd" id="1_bg5fb"]
+[ext_resource type="Script" uid="uid://b85pssecvnfpk" path="res://Skrypty/enemy_projectile_manager.gd" id="1_bg5fb"]
 [ext_resource type="PackedScene" uid="uid://bqn35ho8li6vs" path="res://Scenki/enemy_projectile.tscn" id="2_x8h3b"]
 
 [node name="Node2D" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://u4ba4srchfm4"]
 
-[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_xwf88"]
+[ext_resource type="Script" uid="uid://ckd3hhvn2s61y" path="res://Skrypty/item.gd" id="1_xwf88"]
 [ext_resource type="Texture2D" uid="uid://bxena301i25eh" path="res://Teksturki/head_armor_textures/helm1.png" id="2_q5ij5"]
 
 [resource]
@@ -18,3 +18,4 @@ stackable = false
 stack_size = 1
 max_stack = 50
 equipment_item = true
+usable_item = false

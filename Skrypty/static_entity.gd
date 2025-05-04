@@ -32,6 +32,7 @@ func take_damage(damage, tool_type = "no_tool"):
 	global.change_sprite_color(self, true)
 	health -= damage
 	entity_damaged.emit()
+	create_overhead_text(str(damage))
 	if health <= 0:
 		die()
 
@@ -60,3 +61,9 @@ func drop_item(item, pos, amount):
 	new_drop.dropped_by_entity(item, pos, null)
 	var current_scene = get_tree().get_root().find_child("CurrentScene", true, false)
 	current_scene.add_child(new_drop)
+
+
+func create_overhead_text(text):
+	var oh_label = Label.new()
+	oh_label.text = text
+	oh_label.global_position = global_position

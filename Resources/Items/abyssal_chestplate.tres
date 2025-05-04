@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bowqdkxa8jwor"]
 
-[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_1v04y"]
+[ext_resource type="Script" uid="uid://ckd3hhvn2s61y" path="res://Skrypty/item.gd" id="1_1v04y"]
 [ext_resource type="Texture2D" uid="uid://d1g5o8khyi5cc" path="res://Teksturki/chest_armor_textures/body1.png" id="2_ck5ro"]
 
 [resource]
@@ -18,3 +18,4 @@ stackable = false
 stack_size = 1
 max_stack = 50
 equipment_item = true
+usable_item = false

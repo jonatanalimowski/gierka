@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://7odcqifjnjwr"]
 
-[ext_resource type="Script" path="res://Skrypty/item.gd" id="1_fl2vt"]
+[ext_resource type="Script" uid="uid://ckd3hhvn2s61y" path="res://Skrypty/item.gd" id="1_fl2vt"]
 [ext_resource type="Texture2D" uid="uid://cm5dkvvfy0hf6" path="res://Teksturki/misc_item_textures/slime_gel.png" id="2_mw1hr"]
 
 [resource]
